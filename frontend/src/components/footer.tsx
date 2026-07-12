@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bebas_Neue } from "next/font/google";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 import { Magnetic } from "@/components/gsap-ui";
-import { contactLinks } from "@/data/social";
+import { contactLinks, socialLinks } from "@/data/social";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,6 +134,31 @@ export function Footer() {
         ))}
       </div>
 
+      <div data-footer-item className="relative mx-auto mt-6 flex justify-center sm:mt-8">
+        <Magnetic strength={0.3}>
+          <motion.a
+            href={socialLinks.mailto}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#e53935] px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_12px_40px_-12px_rgba(229,57,53,0.7)]"
+          >
+            <motion.span
+              aria-hidden="true"
+              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent"
+              animate={{ translateX: ["-100%", "100%"] }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatDelay: 1.2,
+              }}
+            />
+            <span className="relative">Let&apos;s work together</span>
+            <ArrowUpRight className="relative size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </motion.a>
+        </Magnetic>
+      </div>
+
       <nav
         data-footer-item
         className="relative mx-auto mt-5 flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-7 gap-y-2 sm:mt-6"
@@ -141,7 +168,9 @@ export function Footer() {
             <a
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              rel={
+                link.href.startsWith("http") ? "noopener noreferrer" : undefined
+              }
               className="group relative text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-[#e53935]"
             >
               {link.label}

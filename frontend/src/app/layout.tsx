@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import { GsapExperience } from "@/components/gsap-experience";
 import { JsonLd } from "@/components/json-ld";
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-black text-white md:cursor-none">
         <JsonLd />
         <GsapExperience>{children}</GsapExperience>
+        <Analytics />
       </body>
     </html>
   );
