@@ -18,6 +18,8 @@ export const siteConfig = {
     "React Native developer",
     "Next.js developer",
     "ganexhshah",
+    "Daydream Biratnagar",
+    "game jam",
   ],
   locale: "en_US",
   ogImage: "/projects/bolkharcha.jpg",

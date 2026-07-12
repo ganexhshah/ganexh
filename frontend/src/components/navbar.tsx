@@ -64,6 +64,12 @@ const navigationCommands: CommandAction[] = [
     label: "Blogs",
     href: "/blogs",
   },
+  {
+    id: "achievements",
+    textValue: "Achievements Game Jam Daydream Winner Awards",
+    label: "Achievements",
+    href: "/achievements",
+  },
 ];
 
 const socialCommands: CommandAction[] = [

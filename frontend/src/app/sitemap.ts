@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { achievements } from "@/data/achievements";
 import { blogPosts } from "@/data/blogs";
 import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
@@ -31,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteConfig.url}/achievements`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${siteConfig.url}/tiktok`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -52,5 +59,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  const achievementRoutes: MetadataRoute.Sitemap = achievements.map(
+    (item) => ({
+      url: `${siteConfig.url}/achievements/${item.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    }),
+  );
+
+  return [
+    ...staticRoutes,
+    ...projectRoutes,
+    ...blogRoutes,
+    ...achievementRoutes,
+  ];
 }
