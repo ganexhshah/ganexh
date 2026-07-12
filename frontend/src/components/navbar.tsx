@@ -86,6 +86,12 @@ const socialCommands: CommandAction[] = [
     href: socialLinks.instagram,
   },
   {
+    id: "tiktok",
+    textValue: "TikTok _ganexx",
+    label: "TikTok",
+    href: socialLinks.tiktok,
+  },
+  {
     id: "email",
     textValue: "Email Contact hello.ganeshshah",
     label: "Email",

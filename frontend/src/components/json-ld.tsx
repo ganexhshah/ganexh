@@ -15,6 +15,7 @@ export function JsonLd() {
       socialLinks.github,
       socialLinks.linkedin,
       socialLinks.instagram,
+      socialLinks.tiktok,
     ],
     address: {
       "@type": "PostalAddress",
