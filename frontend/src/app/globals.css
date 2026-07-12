@@ -408,7 +408,7 @@
   );
 }
 
-html:not(.intro-done) {
+html.intro-playing {
   overflow: hidden;
 }
 

@@ -155,7 +155,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
   return (
     <>
       <motion.header
-        initial={{ y: -18, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={headerClass}

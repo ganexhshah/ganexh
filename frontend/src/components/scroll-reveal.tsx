@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { motion, useInView } from "framer-motion";
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -17,18 +17,15 @@ export function ScrollReveal({
   children,
   className = "",
   delay = 0,
-  y = 28,
+  y = 16,
   scale = 1,
 }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y, scale }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : undefined}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      initial={{ opacity: 1, y: Math.min(y, 16), scale: scale === 1 ? 1 : Math.max(scale, 0.98) }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: EASE, delay }}
       className={className}
     >
       {children}
