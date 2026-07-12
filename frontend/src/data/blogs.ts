@@ -1,0 +1,455 @@
+export type BlogCategory = "create" | "develop" | "explore" | "learn";
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  category: BlogCategory;
+  accent: string;
+  date: string;
+  readTime: string;
+  content: string[];
+};
+
+export const blogCategories = [
+  { id: "all", label: "All" },
+  { id: "create", label: "Create" },
+  { id: "develop", label: "Develop" },
+  { id: "explore", label: "Explore" },
+  { id: "learn", label: "Learn" },
+] as const;
+
+export type BlogFilter = (typeof blogCategories)[number]["id"];
+
+const IMG_A = "/blogs/thumb-1.jpg";
+const IMG_B = "/blogs/thumb-2.jpg";
+const IMG_C = "/blogs/thumb-3.jpg";
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "bolkharcha-origin",
+    title: "Why I Built BolKharcha",
+    description:
+      "Personal finance in Nepal needed a conversational product — not another spreadsheet clone.",
+    image: IMG_C,
+    href: "/blogs/bolkharcha-origin",
+    category: "develop",
+    accent: "from-red-500/30 to-rose-700/20",
+    date: "Jun 28, 2026",
+    readTime: "12 min read",
+    content: [
+      "Most finance apps assume you want to fill forms. In Nepal, people talk about money the way they talk about life: “salary aayo,” “esewa ma pathaye,” “phone kine.” BolKharcha started from that gap between how software expects input and how humans actually speak.",
+      "I did not want another clone of a Western budgeting template with a Nepali flag sticker on it. I wanted a product that understood local wallets, mixed languages, and the emotional friction of tracking every small expense. That product became BolKharcha — an AI-powered personal finance manager with chat at the center.",
+      "The first version was ugly and incomplete, but it could already turn a sentence into a draft transaction. That single loop — speak or type, confirm, save — proved more valuable than a polished dashboard with empty data. Users care about speed to honesty: how fast does the app reflect real life?",
+      "Building locally also meant designing for Cash, Bank, eSewa, Khalti, and IME Pay as first-class accounts. Transfers between wallets are everyday behavior here. If your data model only knows “checking” and “savings,” you are already lying to the user.",
+      "Under the hood, React Native and Expo let me ship cross-platform. TypeScript kept mobile and API contracts aligned. Node.js and PostgreSQL held the truth of balances. Ollama powered conversational understanding without forcing every request through a black-box cloud API.",
+      "The biggest lesson was not technical. It was product taste: local context beats generic fintech every time. When software speaks your language — literally and culturally — money tracking stops feeling like punishment and starts feeling like clarity.",
+      "BolKharcha is still evolving. Features like budgets, reports, party loans, and multi-auth are not decorations; they are answers to real questions Nepali users ask. Ship the conversation first. Earn the right to show charts later.",
+    ],
+  },
+  {
+    id: "ai-chat-finance",
+    title: "AI Chat for Money Apps",
+    description:
+      "How conversational UI changes expense tracking when language and context matter.",
+    image: IMG_C,
+    href: "/blogs/ai-chat-finance",
+    category: "explore",
+    accent: "from-cyan-500/30 to-blue-600/20",
+    date: "Jun 14, 2026",
+    readTime: "11 min read",
+    content: [
+      "Chat interfaces in finance fail when they try to be clever instead of careful. Money is trust. If the model invents a transaction, the product dies. The goal of AI chat in BolKharcha was never “wow the demo.” It was “reduce typing without reducing accuracy.”",
+      "Conversational UI works because it matches cognition. People already narrate their day. Turning narration into structured ledger entries is the product. The chat screen is just the friendliest door into that transformation.",
+      "I structured the experience around confirmation. The AI proposes. The user approves. That human-in-the-loop moment is where reliability lives. Auto-save without review looks magical until the first wrong category ruins a month of reports.",
+      "Context is the secret ingredient. Recent accounts, last currency, current mode, and language cues all shape interpretation. A bare prompt with no product context will hallucinate politely and confidently.",
+      "Design-wise, chat needs calm motion, clear bubbles, and obvious edit paths. Users should feel they can fix anything in one tap. Fear of irreversible AI mistakes is why many abandon “smart” finance tools.",
+      "The surprising benefit of chat is education. When the app restates “Expense · Mobile · NPR 45,000 · Cash,” users learn the mental model of the ledger without reading a tutorial.",
+      "If you are adding AI to a money product, start with narrow intents, loud confirmations, and measurable accuracy. Expand the vocabulary only after the boring cases are boringly correct.",
+    ],
+  },
+  {
+    id: "got-salary-vs-phone",
+    title: "“Got Salary” vs “Got Phone”",
+    description:
+      "Intent detection is everything when one phrase can mean income and another means expense.",
+    image: IMG_A,
+    href: "/blogs/got-salary-vs-phone",
+    category: "develop",
+    accent: "from-amber-500/25 to-orange-600/15",
+    date: "May 30, 2026",
+    readTime: "10 min read",
+    content: [
+      "Two phrases. Same verb. Opposite money directions. “Got salary” is income. “Got phone” is expense. That tiny linguistic trap is why naive keyword bots fail in personal finance.",
+      "Early BolKharcha prototypes misclassified constantly. The model loved the word “got” and guessed. Guessing is unacceptable when balances are involved. We needed intent, not token matching.",
+      "The breakthrough was a 3-mode system: Income, Expense, and Account setup. Modes shrink the hypothesis space. When the user is in Expense mode, “got phone” is far less ambiguous.",
+      "Prompt engineering still mattered. Examples, counter-examples, and explicit rules about Nepali salary language versus purchase language improved classification. But prompts without product modes were never enough.",
+      "We also added soft confirmations with editable fields. Even a correct parse should be easy to tweak. UX forgiveness is part of NLP quality.",
+      "Evaluation was practical: a growing set of real Nepali/Hinglish sentences with expected intents. If accuracy dropped after a prompt change, we rolled back. Vibes are not metrics.",
+      "The takeaway for builders: language understanding is a product architecture problem. Models help. Boundaries save you.",
+    ],
+  },
+  {
+    id: "multilingual-nlp",
+    title: "Building Multilingual NLP",
+    description:
+      "English, Nepali, and Hinglish in one conversation — and why code-switching breaks naive systems.",
+    image: IMG_B,
+    href: "/blogs/multilingual-nlp",
+    category: "learn",
+    accent: "from-emerald-500/25 to-teal-600/15",
+    date: "May 12, 2026",
+    readTime: "13 min read",
+    content: [
+      "Users in Nepal do not speak “one language per message.” They code-switch. A single line can mix English verbs, Nepali nouns, and Hindi-adjacent fillers. If your NLP pipeline assumes monolingual purity, it will misunderstand daily speech.",
+      "Hinglish is not a third official language. It is a usage pattern. Treating it as noise is how products alienate the exact audience that would love them most.",
+      "BolKharcha’s approach combines language hints, mode context, and fallbacks. When confidence is low, ask a clarifying question instead of committing a bad transaction. Silence is worse than a quick confirm.",
+      "Speech-to-text adds another layer. Numbers and brand names break often. Post-processing that normalizes currency words and local payment names recovered more accuracy than swapping providers every week.",
+      "I keep a living glossary: eSewa spellings, Khalti variants, common expense slang. Dictionaries are unglamorous and incredibly high leverage.",
+      "Testing multilingual UX means recruiting real speakers, not only bilingual engineers. What feels “obvious Nepali” to you may be unnatural to someone else.",
+      "If you build for South Asia, multilingual is not a v2 feature. It is the interface. Design the conversation for mixing from day one.",
+    ],
+  },
+  {
+    id: "expo-router-notes",
+    title: "Expo Router in Production",
+    description:
+      "File-based navigation that stays clean as screens, auth, and deep links grow.",
+    image: IMG_A,
+    href: "/blogs/expo-router-notes",
+    category: "develop",
+    accent: "from-indigo-500/30 to-blue-700/20",
+    date: "Apr 26, 2026",
+    readTime: "9 min read",
+    content: [
+      "Expo Router gave BolKharcha a mental model I already loved from the web: folders are routes. Auth groups, tabs, and modals become a readable tree instead of a spaghetti navigator config.",
+      "The win shows up months later. New screens land where they belong. Deep links stay predictable. Onboarding and main app can share patterns without sharing messy state.",
+      "Keep layouts thin. A layout should provide chrome and guards, not business logic. Push data fetching and mutations into hooks and services so routes remain declarative.",
+      "Auth gates deserve explicit route groups. Logged-out users should never accidentally mount authenticated dashboards. File structure can encode that policy.",
+      "Modals for confirmations and account pickers work well as routes when you want history and deep links. Not everything needs to be a local React state overlay.",
+      "The cost of file-based routing is discipline. Dumping random screens at the root recreates the chaos you escaped. Name things for journeys, not for temporary experiments.",
+      "If you are starting a React Native app in 2026, Expo Router is not hype. It is structure that scales with a solo developer’s attention span.",
+    ],
+  },
+  {
+    id: "react-native-reanimated",
+    title: "Smooth Motion on Mobile",
+    description:
+      "Using Reanimated for finance UI that feels fast without sacrificing clarity.",
+    image: IMG_C,
+    href: "/blogs/react-native-reanimated",
+    category: "create",
+    accent: "from-violet-500/30 to-purple-600/20",
+    date: "Apr 10, 2026",
+    readTime: "9 min read",
+    content: [
+      "Finance UI should feel calm. Flashy animations make balances feel unserious. Reanimated helped BolKharcha move sheets, lists, and chat transitions on the UI thread without jank.",
+      "I use motion to answer questions: Did the save succeed? Which panel opened? Where did this row go? If motion does not answer, it is noise.",
+      "Shared element energy is tempting. Resist it when it fights hierarchy. A budget alert deserves attention; a settings toggle does not need a cinematic entrance.",
+      "Gesture-driven cards and pull-to-refresh feel native when physics are subtle. Overshoot everything and the app feels like a toy.",
+      "Performance budgets matter. Profile on mid-range Android devices, not only the newest iPhone. Nepal users are not a homogeneous hardware market.",
+      "Dark theme plus soft red accents pairs well with restrained motion. Glow should follow interaction, not pulse forever in the background.",
+      "Craft is knowing when to animate — and when a 150ms fade is enough.",
+    ],
+  },
+  {
+    id: "voice-expense-input",
+    title: "Voice Input for Expenses",
+    description:
+      "Letting users speak transactions — and cleaning speech-to-text for financial accuracy.",
+    image: IMG_B,
+    href: "/blogs/voice-expense-input",
+    category: "explore",
+    accent: "from-rose-500/25 to-red-600/15",
+    date: "Mar 28, 2026",
+    readTime: "10 min read",
+    content: [
+      "People abandon expense apps because typing NPR 80 for tea feels ridiculous. Voice is the obvious fix — until speech-to-text mangles numbers and merchant names.",
+      "BolKharcha treats voice as an input pipeline, not a magic mic button. Capture audio, transcribe, normalize, interpret, confirm. Each stage can fail gracefully.",
+      "Number normalization is a project by itself. Spoken “forty five hundred” and typed “4500” must land in the same decimal world. Currency words need local awareness.",
+      "Privacy expectations matter. Users should know when recording starts and ends. Clear affordances beat hidden always-listening fantasies.",
+      "Offline and noisy environments are real. Provide keyboard fallback immediately. Voice is acceleration, not a gate.",
+      "The best voice UX ends with an editable summary. Let users fix one field without re-recording the whole sentence.",
+      "When voice works, daily logging finally matches daily life: quick, spoken, done.",
+    ],
+  },
+  {
+    id: "postgres-money",
+    title: "PostgreSQL for Money Data",
+    description:
+      "Constraints, decimals, and sync strategies that keep balances trustworthy.",
+    image: IMG_A,
+    href: "/blogs/postgres-money",
+    category: "develop",
+    accent: "from-sky-500/25 to-cyan-700/15",
+    date: "Mar 8, 2026",
+    readTime: "12 min read",
+    content: [
+      "Money data is unforgiving. A one-rupee drift destroys trust. That is why BolKharcha uses PostgreSQL with careful numeric types and constraints instead of casual floating point.",
+      "Accounts, transactions, transfers, and loans are related on purpose. Foreign keys and transactional writes prevent orphan states that JSON blobs love to create.",
+      "Optimistic UI keeps the app feeling instant. The server remains the referee. Conflict resolution and idempotent writes matter when networks flake.",
+      "Reporting queries should be boring and indexed. Fancy analytics are useless if month summaries take seconds on a mid-tier phone network.",
+      "Migrations are product decisions. Changing how balances are computed mid-flight requires backfills and honesty in release notes.",
+      "I prefer explicit ledger entries over mutable balance fields alone. Balances can be derived; history must be durable.",
+      "If you store money, treat your database like a vault: clear rules, audited changes, no vibes-based schema.",
+    ],
+  },
+  {
+    id: "wallet-accounts-nepal",
+    title: "Designing for Nepal Wallets",
+    description:
+      "Cash, Bank, eSewa, Khalti, IME Pay — modeling how people actually hold money.",
+    image: IMG_C,
+    href: "/blogs/wallet-accounts-nepal",
+    category: "create",
+    accent: "from-lime-500/20 to-green-700/15",
+    date: "Feb 20, 2026",
+    readTime: "10 min read",
+    content: [
+      "A finance app built only for “bank account” misunderstands Nepal. People split money across cash, cards, and digital wallets like eSewa, Khalti, and IME Pay — often in the same afternoon.",
+      "BolKharcha models each as an account type with its own balance and history. Transfers are not edge cases; they are the plot.",
+      "UI should make switching accounts obvious. Color, icons, and labels help users recognize wallets at a glance without reading paragraphs.",
+      "Onboarding must ask where money lives today. Empty “primary account” assumptions create abandoned setups.",
+      "Reconciliation across wallets is a user need. “Where did my 2,000 go?” is a multi-account question.",
+      "Design systems should include wallet language in empty states and examples. Local realism builds immediate trust.",
+      "Global templates are starting points. Local payment culture is the product.",
+    ],
+  },
+  {
+    id: "budget-12-categories",
+    title: "12-Category Budget Systems",
+    description:
+      "Enough structure to guide spending without making users hate budgeting.",
+    image: IMG_B,
+    href: "/blogs/budget-12-categories",
+    category: "learn",
+    accent: "from-fuchsia-500/25 to-pink-700/15",
+    date: "Feb 2, 2026",
+    readTime: "8 min read",
+    content: [
+      "Budget category design is psychology. Too few buckets hide problems. Too many buckets guarantee abandonment by week two.",
+      "Twelve categories gave BolKharcha a practical middle path: food, transport, rent, utilities, education, health, entertainment, shopping, family, loans, savings goals, and other.",
+      "Smart defaults beat blank customization. Users can rename later. They cannot recover from decision fatigue on day one.",
+      "Alerts should coach. “You are at 80% of food” is useful. Shame copy is not a retention strategy.",
+      "Budgets need to respect wallet reality. A food budget spent from eSewa and cash still counts as food.",
+      "Review weekly, not only monthly. Short feedback loops change behavior faster than annual guilt.",
+      "A good budget system is a mirror with manners.",
+    ],
+  },
+  {
+    id: "gsap-portfolio-craft",
+    title: "GSAP on a Portfolio Site",
+    description:
+      "Scroll reveals, SVG text, and intro loaders that feel premium without feeling heavy.",
+    image: IMG_A,
+    href: "/blogs/gsap-portfolio-craft",
+    category: "create",
+    accent: "from-red-500/30 to-orange-600/20",
+    date: "Jan 18, 2026",
+    readTime: "11 min read",
+    content: [
+      "A portfolio is a timed performance. GSAP gives you a conductor’s baton: intros, scroll reveals, SVG strokes, and micro-interactions that feel intentional.",
+      "On my site, the opening loader counts up, reveals GANESH letter by letter, draws an SVG line, then splits away. It sets tone before the hero speaks.",
+      "ScrollTrigger ties motion to reading pace. Section bands with SVG text drift as you move, connecting Projects, About, and Blogs without heavy page weight.",
+      "Custom cursors and magnetic links are optional spice. They must degrade gracefully on touch devices and respect reduced-motion preferences.",
+      "The failure mode of GSAP portfolios is excess. If everything moves, nothing matters. Pick three signature moments and keep the rest quiet.",
+      "Performance still counts. Kill timelines on unmount. Avoid layout thrash. Test mid-range laptops, not only your gaming machine.",
+      "Motion should make visitors remember your name — not remember that they waited for animations to finish.",
+    ],
+  },
+  {
+    id: "nextjs-app-router",
+    title: "Next.js App Router Patterns",
+    description:
+      "Static params, page shells, and detail routes that stay fast as content grows.",
+    image: IMG_A,
+    href: "/blogs/nextjs-app-router",
+    category: "develop",
+    accent: "from-neutral-400/20 to-zinc-700/20",
+    date: "Jan 4, 2026",
+    readTime: "11 min read",
+    content: [
+      "The App Router shines when your portfolio content is structured data. Projects and blogs become arrays, routes become `[id]`, and `generateStaticParams` prebuilds the pages.",
+      "I keep a PageShell for navbar and footer so detail pages inherit chrome without copy-paste. Home stays a composition of sections; subpages stay focused.",
+      "Server Components are perfect for article bodies. Client Components handle carousels, GSAP, and command menus. That split keeps JavaScript honest.",
+      "Metadata functions give each project and blog real titles and descriptions. SEO is not optional when your site is your resume.",
+      "Shared data modules in `/data` are intentionally simple. When content is still founder-owned, a typed TypeScript file beats an underused CMS.",
+      "As the blog count grows to twenty and beyond, static generation remains a friend. Rebuilds are fine; runtime database complexity is not required yet.",
+      "Choose boring content architecture early. Fancy rendering cannot save a tangled folder story.",
+    ],
+  },
+  {
+    id: "dark-theme-ux",
+    title: "Designing Dark Themes",
+    description:
+      "Contrast, red accents, and calm surfaces that stay readable at night.",
+    image: IMG_B,
+    href: "/blogs/dark-theme-ux",
+    category: "create",
+    accent: "from-slate-500/25 to-gray-800/20",
+    date: "Dec 16, 2025",
+    readTime: "9 min read",
+    content: [
+      "Dark themes fail when designers treat them as “invert the whites.” Hierarchy dies, borders vanish, and text becomes a fog.",
+      "My system uses near-black bases, white copy at controlled opacities, and a single hot accent — red — for kickers, CTAs, and focus.",
+      "Borders at white/10 create structure without cardboard cards everywhere. Surfaces lift with subtle white/[0.02] fills only when interaction needs a container.",
+      "Glow is atmospheric, not neon club lighting. One radial wash behind a hero beats five competing blurs.",
+      "Accessibility still applies. Check contrast. Do not rely on color alone for state. Focus rings matter on dark canvases.",
+      "Both BolKharcha and this portfolio lean dark because long sessions and night browsing are real. Comfort is a feature.",
+      "A dark theme should feel expensive and quiet — like a theater, not a nightclub.",
+    ],
+  },
+  {
+    id: "shipping-solo",
+    title: "Shipping Solo in 2026",
+    description:
+      "Focus systems, scope cuts, and the discipline of finishing what you start.",
+    image: IMG_A,
+    href: "/blogs/shipping-solo",
+    category: "learn",
+    accent: "from-yellow-500/25 to-amber-700/15",
+    date: "Dec 1, 2025",
+    readTime: "8 min read",
+    content: [
+      "Solo development is a focus sport. Skill matters, but unfinished projects are usually attention failures, not talent failures.",
+      "I ship vertical slices. One journey works end-to-end before I polish secondary screens. A talking expense logger beats a perfect settings page with no core loop.",
+      "Timeboxing helps. Weekly demos — even to yourself on camera — create externalized accountability.",
+      "Scope cuts are love letters to the future. Every feature you delay is a feature you might finish.",
+      "Tooling should reduce ceremony. Expo, TypeScript, and typed data files let me move without waiting for a platform team I do not have.",
+      "Burnout hides in context switching. Batch similar work. Protect deep focus blocks like client meetings.",
+      "Finished and imperfect compounds. Endless almost does not.",
+    ],
+  },
+  {
+    id: "oauth-jwt-mobile",
+    title: "Auth That Users Trust",
+    description:
+      "Email, OTP, Google OAuth, and JWT middleware — security without friction theater.",
+    image: IMG_C,
+    href: "/blogs/oauth-jwt-mobile",
+    category: "develop",
+    accent: "from-blue-500/25 to-indigo-700/20",
+    date: "Nov 14, 2025",
+    readTime: "12 min read",
+    content: [
+      "Finance apps live or die on auth trust. Users will not type salary details into something that feels sketchy at login.",
+      "BolKharcha supports email/password, phone OTP, and Google OAuth so people can enter through the door they already trust.",
+      "JWT-protected APIs with middleware keep authorization consistent. Do not sprinkle ad-hoc token checks across handlers.",
+      "Password reset via email is not glamorous. It is mandatory. Document the flow. Test the ugly cases.",
+      "Session UX matters: clear logged-in state, obvious logout, and calm error messages when tokens expire.",
+      "Never confuse security theater with security. Long password rules without breach hygiene help no one.",
+      "Good auth is invisible when it works and crystal clear when it fails.",
+    ],
+  },
+  {
+    id: "reports-that-matter",
+    title: "Reports People Actually Read",
+    description:
+      "Income, expense, party, and bank statements designed for clarity over charts for charts’ sake.",
+    image: IMG_B,
+    href: "/blogs/reports-that-matter",
+    category: "explore",
+    accent: "from-teal-500/25 to-emerald-700/15",
+    date: "Oct 28, 2025",
+    readTime: "9 min read",
+    content: [
+      "Dashboards often optimize for screenshots. Users optimize for answers: “How much did I spend on food?” “What does Ram still owe?” “What left my bank this week?”",
+      "BolKharcha prioritizes statements over ornamental charts. Income vs expense, party ledgers, and bank-like histories earn their pixels.",
+      "Search turns a ledger into a tool. Without search, history is a museum.",
+      "Filters by account, category, and date range matter more than a 3D pie chart.",
+      "Export and share can wait until the on-screen story is readable. Do not build PDF pipelines for unread UI.",
+      "Visualizations should highlight outliers and trends in one glance. If a chart needs a paragraph legend, rewrite the chart.",
+      "Insight is a sentence supported by numbers — not a rainbow.",
+    ],
+  },
+  {
+    id: "pull-to-refresh",
+    title: "Micro-interactions That Teach",
+    description:
+      "Pull-to-refresh, loading states, and feedback loops that keep mobile apps honest.",
+    image: IMG_A,
+    href: "/blogs/pull-to-refresh",
+    category: "create",
+    accent: "from-orange-500/25 to-red-700/15",
+    date: "Oct 8, 2025",
+    readTime: "8 min read",
+    content: [
+      "Micro-interactions are how an app tells the truth. Pull-to-refresh says data can change. Spinners say work is happening. Empty states say what to do next.",
+      "BolKharcha uses loading and success feedback on every async money action. Silence feels like a crash when cash is involved.",
+      "Empty states should teach. “No transactions yet — try saying ‘chiya 50’” is better than a sad illustration alone.",
+      "Error states need recovery actions. Retry, edit, contact support — not a red blob of jargon.",
+      "Haptics and tiny motion can confirm saves without stealing focus. Keep them short.",
+      "Consistency across screens builds intuition. If refresh works one way on Dashboard, do not invent another gesture on Reports.",
+      "Polish is not vanity. Polish is communication.",
+    ],
+  },
+  {
+    id: "typescript-everywhere",
+    title: "TypeScript Across the Stack",
+    description:
+      "Shared types between React Native, Node, and data models — fewer surprises in production.",
+    image: IMG_B,
+    href: "/blogs/typescript-everywhere",
+    category: "learn",
+    accent: "from-sky-400/25 to-blue-800/20",
+    date: "Sep 20, 2025",
+    readTime: "10 min read",
+    content: [
+      "TypeScript earns its keep when mobile and API disagree about a field. That disagreement should fail at compile time, not in a user’s balance screen.",
+      "I keep domain types close to the source of truth and reuse them at the edges. Account, Transaction, and Budget shapes should not be reinvented three times.",
+      "Strict mode feels annoying until it catches a null that would have wiped a screen. Annoyance is cheaper than incidents.",
+      "On the portfolio site, typed blog and project modules make content refactors safe. Rename a field once; TypeScript shows every break.",
+      "Avoid `any` as a lifestyle. Escape hatches exist for borders with untyped libraries — not for core money logic.",
+      "Types are documentation that cannot drift as easily as a Notion page.",
+      "Use TypeScript to make future-you faster, not to impress lint dashboards.",
+    ],
+  },
+  {
+    id: "learning-in-public-nepal",
+    title: "Learning in Public from Nepal",
+    description:
+      "Building, writing, and sharing as a student developer with global tools and local problems.",
+    image: IMG_A,
+    href: "/blogs/learning-in-public-nepal",
+    category: "learn",
+    accent: "from-red-500/25 to-rose-800/20",
+    date: "Sep 2, 2025",
+    readTime: "9 min read",
+    content: [
+      "You do not need a coastal zip code to ship useful software. You need a real problem, steady reps, and the courage to show unfinished work.",
+      "Nepal gives unfair advantages: multilingual life, wallet diversity, and users who will tell you quickly when something feels foreign.",
+      "Learning in public — blogs, demos, GitHub — compounds. Opportunities cannot find invisible work.",
+      "Student schedules are constraints. Constraints create taste. Ship smaller, learn faster.",
+      "Compare yourself to yesterday’s build, not to a Twitter highlight reel.",
+      "Community matters. Share notes with other builders. Teach what you just learned while it is fresh.",
+      "Stay curious, stay shipping, stay kind to your future self.",
+    ],
+  },
+  {
+    id: "portfolio-as-product",
+    title: "Treat Your Portfolio Like a Product",
+    description:
+      "Projects, blogs, about, and motion — packaging craft so visitors feel who you are in seconds.",
+    image: IMG_A,
+    href: "/blogs/portfolio-as-product",
+    category: "explore",
+    accent: "from-purple-500/25 to-violet-800/20",
+    date: "Aug 15, 2025",
+    readTime: "10 min read",
+    content: [
+      "A portfolio is not a folder of screenshots. It is a product with a job: help a visitor understand who you are and what you can build — quickly.",
+      "My site sequences Hero → Projects → About/Education → Blogs → Footer. Each section has one job. Gaps stay tight so the story does not leak energy.",
+      "BolKharcha anchors the projects narrative with a real thumbnail and full case-study depth. Blogs extend the thinking behind the build.",
+      "Motion, typography, and color are voice. GANESH as a watermark is branding, not filler.",
+      "Measure success simply: do people remember your name, your product, and one sharp detail?",
+      "Keep content maintainable. Typed data files and static routes beat a neglected CMS.",
+      "If your portfolio feels like a product you would proudly onboard a user into, you are doing it right.",
+    ],
+  },
+];
+
+export function getBlogPost(id: string) {
+  return blogPosts.find((post) => post.id === id);
+}

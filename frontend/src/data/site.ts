@@ -1,0 +1,25 @@
+export const siteConfig = {
+  name: "Ganesh Shah",
+  shortName: "GaneshShah",
+  domain: "ganeshshah.com",
+  url: "https://ganeshshah.com",
+  description:
+    "Official portfolio of Ganesh Shah (ganeshshah.com) — full-stack developer & UI/UX creator from Nepal. Explore BolKharcha, NayaMenu, P2P Share, blogs, and projects.",
+  keywords: [
+    "Ganesh Shah",
+    "ganeshshah",
+    "ganeshshah.com",
+    "Ganesh Shah portfolio",
+    "Ganesh Shah developer",
+    "full-stack developer Nepal",
+    "BolKharcha",
+    "NayaMenu",
+    "P2P file share",
+    "React Native developer",
+    "Next.js developer",
+    "ganexhshah",
+  ],
+  locale: "en_US",
+  ogImage: "/projects/bolkharcha.jpg",
+  twitterHandle: "@ganesh_sha1",
+} as const;
