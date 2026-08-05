@@ -29,7 +29,7 @@ function EducationSkillsColumn() {
   return (
     <ScrollReveal
       y={20}
-      className="group flex h-full flex-col border-b border-white/10 bg-white/[0.02] p-6 transition-colors hover:bg-white/[0.04] sm:p-7 lg:border-b-0 lg:border-r"
+      className="group flex h-full flex-col p-6 sm:p-7"
     >
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
@@ -164,7 +164,7 @@ function GitHubActivity() {
 function QuoteCtaColumn() {
   return (
     <ScrollReveal delay={0.2} y={20} className="h-full">
-      <div className="relative flex h-full flex-col justify-between overflow-hidden bg-[#140808] px-5 py-6 sm:px-7 sm:py-8">
+      <div className="relative flex h-full flex-col justify-between overflow-hidden px-5 py-6 sm:px-7 sm:py-8">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-8 -top-8 size-32 rounded-full bg-[#e53935]/10 blur-3xl"
@@ -325,7 +325,7 @@ export function AboutSection() {
         </motion.h2>
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 overflow-hidden rounded-2xl border border-white/10 lg:grid-cols-2">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 lg:grid-cols-2">
         <EducationSkillsColumn />
         <QuoteCtaColumn />
       </div>

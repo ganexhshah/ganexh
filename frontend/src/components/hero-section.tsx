@@ -4,11 +4,13 @@ import { useEffect, useRef } from "react";
 import { animate, motion, useInView, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe, Sparkles } from "lucide-react";
+import { ArrowUpRight, FileText, Globe, Sparkles } from "lucide-react";
 import { Bebas_Neue, Great_Vibes } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Navbar } from "@/components/navbar";
+import { socialLinks } from "@/data/social";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,18 +123,18 @@ export function HeroSection() {
     <section
       id="profile"
       ref={sectionRef}
-      className="relative m-2 overflow-x-hidden border border-[#8b1a1a] bg-black sm:m-3 lg:min-h-[calc(100dvh-1.5rem)] lg:overflow-hidden"
+      className="relative m-2 overflow-x-hidden bg-black sm:m-3 lg:min-h-[calc(100dvh-1.5rem)] lg:overflow-hidden"
     >
       <div
         ref={watermarkRef}
         aria-hidden="true"
-        className={`${displayFont.className} pointer-events-none absolute inset-x-0 top-[3%] z-0 select-none px-1 text-center sm:top-[5%] lg:top-[8%]`}
+        className={`${displayFont.className} pointer-events-none absolute inset-x-0 top-[3%] z-0 hidden select-none px-1 text-center sm:top-[5%] sm:block lg:top-[8%]`}
       >
         <motion.span
           initial={{ opacity: 0, scale: 0.94, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.1, ease: EASE }}
-          className="inline-block bg-gradient-to-b from-[#e53935] to-[#6b0f0f] bg-clip-text text-[clamp(2.75rem,13.5vw,4.5rem)] leading-[0.78] tracking-[0.04em] text-transparent sm:text-[clamp(3.75rem,18vw,8rem)] lg:text-[clamp(5rem,24vw,18rem)]"
+          className="inline-block bg-gradient-to-b from-[#e53935] to-[#6b0f0f] bg-clip-text text-[clamp(3.75rem,18vw,8rem)] leading-[0.78] tracking-[0.04em] text-transparent lg:text-[clamp(5rem,24vw,18rem)]"
         >
           GANESH
         </motion.span>
@@ -244,6 +246,30 @@ export function HeroSection() {
             <Globe className="size-3.5 shrink-0" aria-hidden="true" />
             <span>Available Worldwide</span>
           </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
+          className="order-3 flex w-full flex-wrap items-center justify-center gap-3 sm:gap-4 lg:col-span-2 lg:mt-2"
+        >
+          <Link
+            href="https://pub-3ecae00ed691451da4b557c40303c0d5.r2.dev/ganeshsahu_cv%20(2).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#e53935] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90 sm:px-6 sm:py-3 sm:text-xs"
+          >
+            <FileText className="size-3.5 shrink-0" aria-hidden="true" />
+            View CV
+          </Link>
+          <a
+            href={socialLinks.mailto}
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white/50 hover:bg-white/5 sm:px-6 sm:py-3 sm:text-xs"
+          >
+            Contact Me
+            <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+          </a>
         </motion.div>
       </div>
     </section>

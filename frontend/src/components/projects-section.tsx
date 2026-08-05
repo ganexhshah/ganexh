@@ -59,6 +59,7 @@ function BackgroundCard({
         src={project.image}
         alt=""
         fill
+        loading="lazy"
         className="object-cover"
         sizes="300px"
       />
@@ -173,6 +174,7 @@ export function ProjectsSection({
                     src={activeProject.image}
                     alt={activeProject.title}
                     fill
+                    loading="lazy"
                     className="object-cover"
                     sizes="180px"
                   />
@@ -284,6 +286,7 @@ export function ProjectsSection({
                       src={activeProject.image}
                       alt={activeProject.title}
                       fill
+                      loading="lazy"
                       className="object-cover"
                       sizes="(max-width: 768px) 90vw, 400px"
                     />
