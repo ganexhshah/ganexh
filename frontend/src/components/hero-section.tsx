@@ -28,15 +28,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } },
 };
 
 const fadeUpItem = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 1, y: 0 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: EASE },
+    transition: { duration: 0.5, ease: EASE },
   },
 };
 
@@ -131,9 +131,7 @@ export function HeroSection() {
         className={`${displayFont.className} pointer-events-none absolute inset-x-0 top-[3%] z-0 hidden select-none px-1 text-center sm:top-[5%] sm:block lg:top-[8%]`}
       >
         <motion.span
-          initial={{ opacity: 0, scale: 0.94, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: EASE }}
+          initial={false}
           className="inline-block bg-gradient-to-b from-[#e53935] to-[#6b0f0f] bg-clip-text text-[clamp(3.75rem,18vw,8rem)] leading-[0.78] tracking-[0.04em] text-transparent lg:text-[clamp(5rem,24vw,18rem)]"
         >
           GANESH
@@ -141,9 +139,7 @@ export function HeroSection() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: EASE, delay: 0.35 }}
+        initial={false}
         className="pointer-events-none absolute inset-x-0 bottom-0 top-14 z-[5] hidden justify-center lg:flex lg:top-16"
       >
         <div className="relative h-full w-full max-w-[min(95vw,720px)]">
@@ -249,9 +245,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
+          initial={false}
           className="order-3 flex w-full flex-wrap items-center justify-center gap-3 sm:gap-4 lg:col-span-2 lg:mt-2"
         >
           <Link

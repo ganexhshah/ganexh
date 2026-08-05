@@ -16,7 +16,6 @@ type SiteIntroProps = {
 
 export function SiteIntro({ onComplete }: SiteIntroProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  // Start hidden so SSR/hydration never flash a black overlay.
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
@@ -38,6 +37,7 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
     if (!play || !rootRef.current) return;
 
     const root = rootRef.current;
+    const content = root.querySelector("[data-intro-content]");
     const letters = root.querySelectorAll("[data-intro-letter]");
     const line = root.querySelector("[data-intro-line]") as SVGPathElement | null;
     const tagline = root.querySelector("[data-intro-tag]");
@@ -106,12 +106,23 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
 
     tl.to({}, { duration: 0.28 });
 
-    tl.to(panels, {
-      yPercent: (i: number) => (i === 0 ? -105 : 105),
-      duration: 1,
-      stagger: 0.05,
-      ease: "power4.inOut",
+    tl.to(content, {
+      opacity: 0,
+      y: -12,
+      duration: 0.35,
+      ease: "power2.in",
     });
+
+    tl.to(
+      panels,
+      {
+        yPercent: (i: number) => (i === 0 ? -105 : 105),
+        duration: 1,
+        stagger: 0.05,
+        ease: "power4.inOut",
+      },
+      "-=0.1",
+    );
 
     tl.set(root, { pointerEvents: "none", visibility: "hidden" });
 
@@ -130,14 +141,17 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
     >
       <div
         data-intro-panel
-        className="absolute inset-x-0 top-0 z-20 h-1/2 bg-black"
+        className="absolute inset-x-0 top-0 z-10 h-1/2 bg-black"
       />
       <div
         data-intro-panel
-        className="absolute inset-x-0 bottom-0 z-20 h-1/2 bg-black"
+        className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-black"
       />
 
-      <div className="relative z-10 flex flex-col items-center gap-6 px-6">
+      <div
+        data-intro-content
+        className="relative z-20 flex flex-col items-center gap-6 px-6"
+      >
         <p
           data-intro-count
           className="font-mono text-[11px] tabular-nums tracking-[0.3em] text-[#e53935]"
