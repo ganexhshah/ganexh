@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -52,15 +50,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   return (
     <PageShell>
-      <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-8">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
-        >
-          <ArrowLeft className="size-4" />
-          Back to projects
-        </Link>
-
+      <article className="mx-auto max-w-4xl px-4 pb-16 pt-4 sm:px-8 sm:pt-6">
         <ScrollReveal
           scale={0.98}
           y={20}
@@ -154,6 +144,31 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             </ScrollReveal>
           ))}
         </div>
+
+        {project.gallery && project.gallery.length > 0 && (
+          <ScrollReveal delay={0.08} className="mt-12 border-t border-white/10 pt-10">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#e53935]">
+              Product screens
+            </h2>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {project.gallery.map((shot) => (
+                <div
+                  key={shot.src}
+                  className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-white"
+                >
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    loading="lazy"
+                    className="object-contain"
+                    sizes="(max-width: 896px) 100vw, 440px"
+                  />
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        )}
 
         <ScrollReveal delay={0.1} className="mt-12 border-t border-white/10 pt-10">
           <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#e53935]">

@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -57,15 +55,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <PageShell>
-      <article className="mx-auto max-w-3xl px-4 pb-16 sm:px-8">
-        <Link
-          href="/blogs"
-          className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
-        >
-          <ArrowLeft className="size-4" />
-          Back to blogs
-        </Link>
-
+      <article className="mx-auto max-w-3xl px-4 pb-16 pt-4 sm:px-8 sm:pt-6">
         <ScrollReveal
           scale={0.98}
           y={20}

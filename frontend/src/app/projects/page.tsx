@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { PageShell } from "@/components/page-shell";
 import { ProjectsGrid } from "@/components/projects-grid";
@@ -9,12 +8,12 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Projects by Ganesh Shah on ganeshshah.com — BolKharcha, NayaMenu, P2P Share, and more full-stack work.",
+    "Projects by Ganesh Shah on ganeshshah.com — Scrim, NotesChaiyo, RestroPRO, BolKharcha, NayaMenu, P2P Share, and more full-stack work.",
   alternates: { canonical: `${siteConfig.url}/projects` },
   openGraph: {
     title: "Projects — Ganesh Shah | ganeshshah.com",
     description:
-      "BolKharcha, NayaMenu, P2P Share, and selected full-stack projects.",
+      "Scrim, NotesChaiyo, RestroPRO, BolKharcha, NayaMenu, P2P Share, and selected full-stack projects.",
     url: `${siteConfig.url}/projects`,
   },
 };
@@ -32,15 +31,6 @@ export default function ProjectsPage() {
           <ProjectsGrid />
         </div>
       </section>
-
-      <div className="pb-8 text-center">
-        <Link
-          href="/"
-          className="text-sm text-white/50 transition-colors hover:text-white"
-        >
-          ← Back to home
-        </Link>
-      </div>
     </PageShell>
   );
 }

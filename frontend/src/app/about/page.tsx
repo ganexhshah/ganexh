@@ -89,15 +89,6 @@ export default function AboutPage() {
       </section>
 
       <AboutSection />
-
-      <div className="pb-12 text-center">
-        <Link
-          href="/"
-          className="text-sm text-white/50 transition-colors hover:text-white"
-        >
-          ← Back to home
-        </Link>
-      </div>
     </PageShell>
   );
 }

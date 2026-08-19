@@ -4,7 +4,7 @@ export const siteConfig = {
   domain: "ganeshshah.com",
   url: "https://ganeshshah.com",
   description:
-    "Official portfolio of Ganesh Shah (ganeshshah.com) — full-stack developer & UI/UX creator from Nepal. Explore BolKharcha, NayaMenu, P2P Share, blogs, and projects.",
+    "Official portfolio of Ganesh Shah (ganeshshah.com) — full-stack developer & UI/UX creator from Nepal. Explore Scrim, NotesChaiyo, RestroPRO, BolKharcha, NayaMenu, P2P Share, blogs, and projects.",
   keywords: [
     "Ganesh Shah",
     "ganeshshah",
@@ -12,6 +12,13 @@ export const siteConfig = {
     "Ganesh Shah portfolio",
     "Ganesh Shah developer",
     "full-stack developer Nepal",
+    "Scrim",
+    "goscrim",
+    "Free Fire scrims",
+    "NotesChaiyo",
+    "finora.lol",
+    "RestroPRO",
+    "restaurant POS",
     "BolKharcha",
     "NayaMenu",
     "P2P file share",

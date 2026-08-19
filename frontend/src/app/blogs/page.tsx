@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { BlogsSection } from "@/components/blogs-section";
 import { PageShell } from "@/components/page-shell";
@@ -22,15 +21,6 @@ export default function BlogsPage() {
   return (
     <PageShell>
       <BlogsSection />
-
-      <div className="pb-12 text-center">
-        <Link
-          href="/"
-          className="text-sm text-white/50 transition-colors hover:text-white"
-        >
-          ← Back to home
-        </Link>
-      </div>
     </PageShell>
   );
 }

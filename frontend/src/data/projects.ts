@@ -15,9 +15,212 @@ export type Project = {
   challenges: { title: string; challenge: string; solution: string }[];
   liveDemo?: string;
   github?: string;
+  gallery?: { src: string; alt: string }[];
 };
 
 export const projects: Project[] = [
+  {
+    id: "scrim",
+    client: "Scrim",
+    title: "Skill-Based Free Fire Scrims Platform",
+    description:
+      "Marketing site and Android beta for skill-based Free Fire scrims — Clash squads and Full Map rooms with entry fees and prizes based on competitive play, not chance.",
+    image: "/projects/scrim.png",
+    href: "/projects/scrim",
+    year: "2026",
+    role: "Full-Stack · Product",
+    status: "Live · Android beta",
+    featured: true,
+    liveDemo: "https://goscrim.live/",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "React",
+      "Android",
+      "Google Play beta",
+    ],
+    content: [
+      "Scrim is a skill-based competitive platform for Free Fire scrims — Clash squads and Full Map rooms where outcomes depend on player skill, not lottery mechanics.",
+      "The product loop covers room creation and join flows, in-app wallet for deposits and withdrawals, Free Fire top-up, leaderboards, tournaments, and support — all under an Android beta on Google Play internal testing.",
+      "The marketing site at goscrim.live handles beta invites, user guides, feedback, and help center content — with a dark, game-native landing experience built around clear CTAs and trust messaging.",
+      "Scrim is an independent platform — not affiliated with, endorsed by, or sponsored by Garena International or Free Fire.",
+    ],
+    features: [
+      "Clash Squad Rooms",
+      "Full Map Scrims",
+      "Tournament Tab",
+      "In-App Wallet",
+      "Free Fire Top-Up",
+      "Leaderboard",
+      "Beta Invite Flow",
+      "User Guide & Help Center",
+      "Feedback Collection",
+      "Skill-Based Prize Model",
+    ],
+    challenges: [
+      {
+        title: "Skill-Based Trust Messaging",
+        challenge:
+          "Communicating that Scrim is competitive play — not gambling — while still explaining entry fees and prizes clearly.",
+        solution:
+          "Consistent copy across hero, FAQ, and legal sections emphasizing skill-based outcomes and independence from Garena/Free Fire.",
+      },
+      {
+        title: "Beta Onboarding Funnel",
+        challenge:
+          "Getting testers from landing page to installed app through Google Play internal testing.",
+        solution:
+          "Dedicated invite flow with email capture, Play internal test links, install guide, and step-by-step getting-started content.",
+      },
+      {
+        title: "Full Product Loop",
+        challenge:
+          "Connecting scrim rooms, wallet, top-up, and leaderboard into one coherent in-app experience.",
+        solution:
+          "Structured tabs and flows so players can fund wallets, enter paid rooms, track results, and redeem value without leaving the app.",
+      },
+    ],
+  },
+  {
+    id: "noteschaiyo",
+    client: "NotesChaiyo",
+    title: "Student Notes Marketplace",
+    description:
+      "A student marketplace to share, discover, and earn from study notes — page-by-page viewing, coin rewards, and waitlist access for iOS and Android.",
+    image: "/projects/noteschaiyo.png",
+    href: "/projects/noteschaiyo",
+    year: "2026",
+    role: "Full-Stack · Product",
+    status: "Live · Waitlist",
+    featured: true,
+    liveDemo: "https://finora.lol/about",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "React Native",
+      "Tailwind CSS",
+      "iOS",
+      "Android",
+    ],
+    content: [
+      "NotesChaiyo is a student notes marketplace — share clear notes, discover community tips, and earn coins when uploads help someone else pass.",
+      "The product is built like a study app, not a PDF dump: page previews, fullscreen gallery, pinch-to-zoom, chapters, bookmarks, comments, and downloads live in one note viewer.",
+      "The full loop covers Home, Explore, Upload, Wallet, Profile, chat, community posts, and alerts — with coins from downloads, views, daily tasks, referrals, and a contributor leaderboard.",
+      "The marketing site at finora.lol/about handles waitlist signup, feature catalog, and how-it-works — early access for iOS and Android.",
+    ],
+    features: [
+      "Note Viewer (page-by-page)",
+      "Pinch-to-Zoom Gallery",
+      "Explore & Subject Feeds",
+      "Upload from Camera or Files",
+      "Coin Wallet & Withdrawals",
+      "Daily Tasks & Referrals",
+      "Contributor Leaderboard",
+      "Realtime Chat",
+      "Bookmarks, Likes & Comments",
+      "Waitlist Onboarding",
+    ],
+    challenges: [
+      {
+        title: "Study-App Note Viewing",
+        challenge:
+          "Students bounce when notes feel like a dumped PDF instead of something they can actually study from.",
+        solution:
+          "A dedicated viewer with page previews, fullscreen gallery, pinch-to-zoom, chapter lists, save-to-gallery, and comments in one place.",
+      },
+      {
+        title: "Earn Without Breaking Trust",
+        challenge:
+          "Rewarding uploads can invite spam if coins are easy to farm and quality is invisible.",
+        solution:
+          "Coins tied to helpful downloads and engagement, plus daily tasks, referrals, wallet history, and a monthly contributor leaderboard.",
+      },
+      {
+        title: "Discovery Across Subjects",
+        challenge:
+          "Notes only help if the right student finds the right chapter before an exam.",
+        solution:
+          "Subject chips, ranked feeds, class/chapter/college filters, and cards that surface likes, comments, and bookmarks.",
+      },
+    ],
+  },
+  {
+    id: "restropro",
+    client: "RestroPRO",
+    title: "Restaurant POS SaaS",
+    description:
+      "A PWA restaurant management system that streamlines orders, reservations, customers, and metrics — installable as an app on Android, iPhone, iPad, or desktop.",
+    image: "/projects/ros/02-dashboard.png",
+    href: "/projects/restropro",
+    year: "2025",
+    role: "Full-Stack · SaaS",
+    status: "Completed",
+    featured: true,
+    techStack: [
+      "PWA",
+      "React",
+      "SaaS",
+      "Multi-tenant",
+      "POS",
+      "Stripe",
+    ],
+    content: [
+      "RestroPRO is a restaurant management POS built to simplify daily operations, empower staff, and elevate guest service — from orders and reservations to customers and key metrics, in one place.",
+      "It is a progressive web app, so the same product installs on Android, iPhone, iPad, or desktop. POS is the hub: tickets go to kitchen displays, printers, and the live orders board without a native store listing.",
+      "Floor staff take dine-in and walk-in orders with drafts, variants, add-ons, and kitchen notes. Kitchen screens announce new tickets and mark items preparing or complete. Reservations, customer records, QR digital menus, invoices, users, and reports sit in the same back office.",
+      "The SaaS layer is multi-tenant: a super-admin portal onboards restaurants, tracks active and inactive tenants, plans, and subscription windows — so one codebase can run many independent businesses.",
+    ],
+    features: [
+      "Installable PWA (phone, tablet, desktop)",
+      "Point of Sale with drafts & variants",
+      "Kitchen display & order announcements",
+      "Live order tracking & reprint receipts",
+      "Reservations inside the POS",
+      "Customer management & loyalty insights",
+      "QR / digital menu ordering",
+      "Invoices, reports & metrics dashboard",
+      "Role-based staff access",
+      "Multi-tenant SaaS admin",
+    ],
+    gallery: [
+      { src: "/projects/ros/02-dashboard.png", alt: "RestroPRO dashboard with reservations, top sellers, and metrics" },
+      { src: "/projects/ros/04-setup.png", alt: "Recommended POS setup linking printer, kitchen, and orders" },
+      { src: "/projects/ros/05.png", alt: "Feature grid covering POS, kitchen, reservations, and QR menu" },
+      { src: "/projects/ros/07-dashboard.png", alt: "Dashboard as the daily command centre for restaurant metrics" },
+      { src: "/projects/ros/08.png", alt: "POS screen with menu grid, cart, and pay or send-to-kitchen" },
+      { src: "/projects/ros/09.png", alt: "Drafts, add-ons, variants, and flexible billing options" },
+      { src: "/projects/ros/11-kitchen.png", alt: "Kitchen display with live tokens and preparing or complete actions" },
+      { src: "/projects/ros/13.png", alt: "Current orders board with paid and pending tickets" },
+      { src: "/projects/ros/14.png", alt: "Reservation page for bookings, filters, and table assignment" },
+      { src: "/projects/ros/16.png", alt: "Customer management cards with search, edit, and contact details" },
+      { src: "/projects/ros/25.png", alt: "QR digital menu on mobile with search, variants, and prices" },
+      { src: "/projects/ros/29-tenants.png", alt: "Super-admin tenants portal with plans and subscription status" },
+    ],
+    challenges: [
+      {
+        title: "One App Across Devices",
+        challenge:
+          "Restaurants mix Android phones, iPads, kitchen monitors, and desktops — a native app per platform would slow rollout.",
+        solution:
+          "Ship as a PWA so staff can install the same product on any device and keep POS, kitchen, and back office in sync.",
+      },
+      {
+        title: "Floor-to-Kitchen Flow",
+        challenge:
+          "Orders stall when printers, kitchen, and waitstaff see different states for the same ticket.",
+        solution:
+          "POS as the hub: send to kitchen now or pay first, announce new orders, track preparing/ready/complete, and reprint receipts from a live orders board.",
+      },
+      {
+        title: "Multi-Tenant SaaS",
+        challenge:
+          "Each restaurant needs isolated data, plans, and staff — without deploying a new stack per location.",
+        solution:
+          "A super-admin tenants portal for onboarding, active/inactive status, subscription windows, and plans on one shared SaaS.",
+      },
+    ],
+  },
   {
     id: "bolkharcha",
     client: "BolKharcha",

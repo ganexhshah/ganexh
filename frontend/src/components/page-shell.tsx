@@ -10,7 +10,7 @@ export function PageShell({ children, className = "" }: PageShellProps) {
   return (
     <div className={`min-h-screen bg-black text-white ${className}`}>
       <Navbar variant="page" />
-      <main>{children}</main>
+      <main className="pt-2 sm:pt-3">{children}</main>
       <Footer />
     </div>
   );
