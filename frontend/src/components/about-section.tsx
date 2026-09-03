@@ -56,14 +56,12 @@ function EducationSkillsColumn() {
               transition={{ duration: 0.55, ease: EASE, delay: index * 0.12 }}
               className="flex w-full items-center gap-3 rounded-xl border border-transparent px-2 py-2 transition-colors hover:border-white/10 hover:bg-white/[0.03] sm:gap-4"
             >
-              <div className="relative size-12 shrink-0 overflow-hidden rounded-full border border-white/15 bg-black sm:size-14">
-                <Image
+              <div className="relative size-12 shrink-0 overflow-hidden rounded-full border border-white/20 bg-white p-1 shadow-sm sm:size-14">
                   src={item.image}
                   alt={item.institution}
                   fill
-                  className="object-cover"
+                  className="rounded-full object-contain"
                   sizes="56px"
-                />
               </div>
               <div className="min-w-0 flex-1 text-left">
                 <p className="text-sm font-medium leading-snug text-white">

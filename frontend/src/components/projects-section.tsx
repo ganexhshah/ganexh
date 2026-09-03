@@ -70,17 +70,20 @@ function BackgroundCard({
 type ProjectsSectionProps = {
   compact?: boolean;
   showViewAll?: boolean;
+  initialProjects?: Project[];
 };
 
 export function ProjectsSection({
   compact = false,
   showViewAll = false,
+  initialProjects,
 }: ProjectsSectionProps) {
+  const allProjects = initialProjects && initialProjects.length > 0 ? initialProjects : projects;
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isFirstRender = useRef(true);
-  const activeProject = projects[activeIndex];
+  const activeProject = allProjects[activeIndex] || allProjects[0];
 
   const animateCardIn = useCallback((isInitial = false) => {
     if (!cardRef.current) return;
@@ -141,7 +144,7 @@ export function ProjectsSection({
   }, [compact]);
 
   const goTo = (index: number) => {
-    setActiveIndex((index + projects.length) % projects.length);
+    setActiveIndex((index + allProjects.length) % allProjects.length);
   };
 
   const goNext = () => goTo(activeIndex + 1);
@@ -227,7 +230,7 @@ export function ProjectsSection({
 
       <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-5 sm:gap-6 lg:grid-cols-[minmax(180px,220px)_minmax(260px,440px)_minmax(180px,280px)] lg:items-start lg:justify-center lg:gap-x-10 xl:gap-x-14">
         <div className="order-2 flex w-full max-w-xs flex-col items-center justify-center gap-3 lg:order-1 lg:min-h-[360px] lg:max-w-none lg:items-center lg:gap-4">
-          {projects.map((project, index) => {
+          {allProjects.map((project, index) => {
             const isActive = index === activeIndex;
 
             return (
@@ -257,7 +260,7 @@ export function ProjectsSection({
         className="relative mx-auto aspect-[4/3] w-full max-w-[400px]"
       >
             <AnimatePresence mode="popLayout">
-              {projects.map((project, index) => (
+              {allProjects.map((project, index) => (
                 <BackgroundCard
                   key={project.id}
                   project={project}

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
+import localFont from "next/font/local";
+
 import { GsapExperience } from "@/components/gsap-experience";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/data/site";
@@ -13,7 +15,14 @@ const googleSans = Google_Sans({
   variable: "--font-google-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  fallback: ["system-ui", "sans-serif"],
   adjustFontFallback: false,
+});
+
+const myFont = localFont({
+  src: "../fonts/myfont.woff2",
+  variable: "--font-myfont",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -89,9 +98,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${googleSans.variable} h-full font-sans antialiased`}
+      className={`${googleSans.variable} ${myFont.variable} dark h-full font-sans antialiased`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-black text-white md:cursor-none">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="flex min-h-full flex-col bg-neutral-50 text-neutral-900 transition-colors duration-300 dark:bg-black dark:text-white md:cursor-none">
         <JsonLd />
         <GsapExperience>{children}</GsapExperience>
         <Analytics />

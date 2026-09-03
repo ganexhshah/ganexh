@@ -143,12 +143,9 @@ export function BlogsSection({
   const filteredPosts = useMemo(
     () =>
       filter === "all"
-        ? blogPosts
-        : blogPosts.filter((post) => post.category === filter),
-    [filter],
-  );
-
-  useEffect(() => {
+        ? allBlogs
+        : allBlogs.filter((post) => post.category === filter),
+    [filter, allBlogs],
     setActiveIndex(0);
   }, [filter]);
 
