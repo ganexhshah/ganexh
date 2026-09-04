@@ -13,7 +13,10 @@ export function UtterancesComments({ issueTerm }: UtterancesCommentsProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    container.replaceChildren();
+    if (container.querySelector("script[src='https://utteranc.es/client.js']")) {
+      return;
+    }
+
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
     script.async = true;
@@ -22,8 +25,6 @@ export function UtterancesComments({ issueTerm }: UtterancesCommentsProps) {
     script.setAttribute("theme", "github-dark");
     script.setAttribute("crossorigin", "anonymous");
     container.appendChild(script);
-
-    return () => container.replaceChildren();
   }, [issueTerm]);
 
   return (
