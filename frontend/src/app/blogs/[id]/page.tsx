@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { UtterancesComments } from "@/components/utterances-comments";
-import { BlogAuthorCard } from "@/components/blog-author-card";
 import { blogCategories, getBlogPost } from "@/data/blogs";
 import { siteConfig } from "@/data/site";
 
@@ -125,7 +124,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </ScrollReveal>
           ))}
         </div>
-        <BlogAuthorCard />
         <UtterancesComments issueTerm={url} />
       </article>
     </PageShell>
