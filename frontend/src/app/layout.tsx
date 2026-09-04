@@ -121,6 +121,12 @@ export default function RootLayout({
             `,
           }}
         />
+        <Script
+          id="umami-analytics"
+          src="https://cloud.umami.is/script.js"
+          strategy="afterInteractive"
+          data-website-id="fad22da2-3d88-4b2a-a79b-ad1e32a83ad8"
+        />
       </head>
       <body className="flex min-h-full flex-col bg-neutral-50 text-neutral-900 transition-colors duration-300 dark:bg-black dark:text-white md:cursor-none">
         <GsapExperience>{children}</GsapExperience>
