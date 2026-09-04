@@ -104,7 +104,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               {categoryLabel}
             </span>
             <span>{post.date}</span>
-            <span>·</span>
             <span>{post.readTime}</span>
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
