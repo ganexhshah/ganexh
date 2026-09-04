@@ -10,7 +10,7 @@ export const education = [
     id: "secondary",
     degree: "Secondary Education",
     period: "2014 – 2024",
-    institution: "See Standard Secondary Board School",
+    institution: "Standard Secondary Boarding School",
     image: "/education/2.png",
   },
 ] as const;

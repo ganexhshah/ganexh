@@ -12,8 +12,6 @@ import { siteConfig } from "@/data/site";
 import { sanityFetch } from "@/sanity/lib/client";
 import { blogsQuery, projectsQuery } from "@/sanity/lib/queries";
 
-import { SeoFaqSection } from "@/components/seo-faq";
-
 export const metadata: Metadata = {
   title: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
   description: siteConfig.description,
@@ -105,9 +103,6 @@ export default async function Home() {
 
       <SvgTextBand text="BLOGS · LEARN · WRITE · EXPLORE ·" />
       <BlogsSection showViewAll initialBlogs={sanityBlogs} />
-
-      <SvgTextBand text="FAQ · KNOWLEDGE · ABOUT · CONNECT ·" />
-      <SeoFaqSection />
 
       <Footer />
     </div>
