@@ -16,17 +16,34 @@ import { achievements } from "@/data/achievements";
 import { siteConfig } from "@/data/site";
 import { socialLinks } from "@/data/social";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 export const metadata: Metadata = {
-  title: "TikTok @_ganexx",
+  title: "TikTok @_ganexx — Ganesh Shah | Tech & Dev Socials",
   description:
-    "Ganesh Shah on TikTok as @_ganexx — full-stack developer from Nepal. Visit ganeshshah.com for projects, blogs, and portfolio.",
+    "Connect with Ganesh Shah on TikTok (@_ganexx) — tech content, developer life, project builds, and tutorials from Nepal on ganeshshah.com.",
+  keywords: [
+    "Ganesh Shah TikTok",
+    "@_ganexx",
+    "Ganesh Shah @_ganexx",
+    "Ganesh Shah developer",
+    "ganeshshah.com",
+    "ganexhshah",
+  ],
   alternates: { canonical: `${siteConfig.url}/tiktok` },
   openGraph: {
-    title: "Ganesh Shah on TikTok — @_ganexx | ganeshshah.com",
+    title: "TikTok @_ganexx — Ganesh Shah | Tech & Dev Socials",
     description:
       "Follow @_ganexx on TikTok. Explore the full portfolio at ganeshshah.com.",
     url: `${siteConfig.url}/tiktok`,
+    siteName: "Ganesh Shah — Official Website",
     images: [{ url: "/tiktok-avatar.jpeg", alt: "Ganesh Shah @_ganexx" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesh Shah on TikTok — @_ganexx",
+    description: "Follow Ganesh Shah on TikTok (@_ganexx).",
+    images: ["/tiktok-avatar.jpeg"],
   },
 };
 
@@ -120,6 +137,12 @@ const links = [
 export default function TikTokPage() {
   return (
     <div className="relative flex min-h-dvh flex-col items-center overflow-hidden bg-black px-4 py-10 text-white sm:px-6">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "TikTok @_ganexx", url: `${siteConfig.url}/tiktok` },
+        ]}
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 left-1/2 size-80 -translate-x-1/2 rounded-full bg-[#e53935]/20 blur-3xl"

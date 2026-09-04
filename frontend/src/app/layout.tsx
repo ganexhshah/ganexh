@@ -3,6 +3,7 @@ import { Google_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
 import localFont from "next/font/local";
+import Script from "next/script";
 
 import { GsapExperience } from "@/components/gsap-experience";
 import { JsonLd } from "@/components/json-ld";
@@ -28,7 +29,7 @@ const myFont = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Ganesh Shah | Full-Stack Developer — ganeshshah.com",
+    default: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
     template: "%s | Ganesh Shah — ganeshshah.com",
   },
   description: siteConfig.description,
@@ -45,21 +46,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: siteConfig.locale,
     url: siteConfig.url,
-    siteName: "ganeshshah.com",
-    title: "Ganesh Shah | Full-Stack Developer — ganeshshah.com",
+    siteName: "Ganesh Shah — Official Website",
+    title: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
     description: siteConfig.description,
     images: [
       {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Ganesh Shah — Portfolio at ganeshshah.com",
+        alt: "Ganesh Shah — Full-Stack Developer & Software Engineer (ganeshshah.com)",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ganesh Shah | Full-Stack Developer — ganeshshah.com",
+    title: "Ganesh Shah — Full-Stack Developer & Software Engineer",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.twitterHandle,
@@ -82,8 +83,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   verification: {
-    // Add Google Search Console verification token when available:
-    // google: "YOUR_VERIFICATION_CODE",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   other: {
     "contact:email": socialLinks.email,
@@ -102,7 +102,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
+        <JsonLd />
+        <Script
+          id="theme-initializer"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -120,7 +123,6 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col bg-neutral-50 text-neutral-900 transition-colors duration-300 dark:bg-black dark:text-white md:cursor-none">
-        <JsonLd />
         <GsapExperience>{children}</GsapExperience>
         <Analytics />
       </body>

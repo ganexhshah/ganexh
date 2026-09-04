@@ -128,12 +128,15 @@ function BlogCard({
 type BlogsSectionProps = {
   compact?: boolean;
   showViewAll?: boolean;
+  initialBlogs?: BlogPost[];
 };
 
 export function BlogsSection({
   compact = false,
   showViewAll = false,
+  initialBlogs,
 }: BlogsSectionProps) {
+  const allBlogs = initialBlogs && initialBlogs.length > 0 ? initialBlogs : blogPosts;
   const [filter, setFilter] = useState<BlogFilter>("all");
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -146,6 +149,9 @@ export function BlogsSection({
         ? allBlogs
         : allBlogs.filter((post) => post.category === filter),
     [filter, allBlogs],
+  );
+
+  useEffect(() => {
     setActiveIndex(0);
   }, [filter]);
 

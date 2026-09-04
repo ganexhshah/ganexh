@@ -6,6 +6,8 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { getProject } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 
+import { BreadcrumbJsonLd, ProjectJsonLd } from "@/components/json-ld";
+
 type ProjectDetailPageProps = {
   params: Promise<{ id: string }>;
 };
@@ -18,19 +20,28 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ProjectDetailPageProps) {
   const { id } = await params;
   const project = getProject(id);
-  if (!project) return { title: "Project Not Found" };
+  if (!project) return { title: "Project Not Found | Ganesh Shah" };
 
   const url = `${siteConfig.url}/projects/${project.id}`;
 
   return {
-    title: `${project.client} — ${project.title}`,
-    description: project.description,
+    title: `${project.client} — ${project.title} | Ganesh Shah`,
+    description: `${project.description} Engineered by Ganesh Shah (ganeshshah.com).`,
+    keywords: [
+      project.client,
+      `${project.client} Ganesh Shah`,
+      "Ganesh Shah project",
+      "Ganesh Shah developer",
+      "Ganesh Shah portfolio",
+      ...project.techStack,
+    ],
     alternates: { canonical: url },
     openGraph: {
-      title: `${project.client} | Ganesh Shah — ganeshshah.com`,
+      title: `${project.client} — ${project.title} | Ganesh Shah`,
       description: project.description,
       url,
-      images: [{ url: project.image, alt: project.title }],
+      siteName: "Ganesh Shah — Official Website",
+      images: [{ url: project.image, alt: `${project.title} by Ganesh Shah` }],
       type: "article",
     },
     twitter: {
@@ -48,8 +59,23 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   if (!project) notFound();
 
+  const url = `${siteConfig.url}/projects/${project.id}`;
+
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Projects", url: `${siteConfig.url}/projects` },
+          { name: project.client, url },
+        ]}
+      />
+      <ProjectJsonLd
+        title={`${project.client} — ${project.title}`}
+        description={project.description}
+        url={url}
+        image={project.image}
+      />
       <article className="mx-auto max-w-4xl px-4 pb-16 pt-4 sm:px-8 sm:pt-6">
         <ScrollReveal
           scale={0.98}

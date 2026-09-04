@@ -7,16 +7,35 @@ import { siteConfig } from "@/data/site";
 import { sanityFetch } from "@/sanity/lib/client";
 import { blogsQuery } from "@/sanity/lib/queries";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 export const metadata: Metadata = {
-  title: "Blogs",
+  title: "Blogs & Articles by Ganesh Shah — Full-Stack Development & Tech",
   description:
-    "Blogs by Ganesh Shah on ganeshshah.com — development, design, BolKharcha, React Native, and building in public.",
+    "Read articles, tutorials, and engineering insights by Ganesh Shah (ganeshshah.com) — covering full-stack development, Node.js, NestJS, Next.js, and product shipping.",
+  keywords: [
+    "Ganesh Shah blog",
+    "Ganesh Shah articles",
+    "Ganesh Shah tutorials",
+    "Ganesh Shah developer",
+    "Ganesh Shah tech",
+    "ganeshshah.com",
+    "ganexhshah",
+  ],
   alternates: { canonical: `${siteConfig.url}/blogs` },
   openGraph: {
-    title: "Blogs — Ganesh Shah | ganeshshah.com",
+    title: "Blogs & Articles by Ganesh Shah — Full-Stack Development & Tech",
     description:
-      "Articles on development, design, AI finance apps, and shipping solo.",
+      "Read articles, tutorials, and engineering insights by Ganesh Shah (ganeshshah.com).",
     url: `${siteConfig.url}/blogs`,
+    siteName: "Ganesh Shah — Official Website",
+    images: [{ url: "/blogs/thumb-1.jpg", alt: "Ganesh Shah Articles" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blogs & Articles by Ganesh Shah",
+    description: "Read engineering articles and insights by Ganesh Shah on ganeshshah.com.",
+    images: ["/blogs/thumb-1.jpg"],
   },
 };
 
@@ -54,6 +73,12 @@ export default async function BlogsPage() {
 
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Blogs", url: `${siteConfig.url}/blogs` },
+        ]}
+      />
       <BlogsSection initialBlogs={sanityBlogs} />
     </PageShell>
   );

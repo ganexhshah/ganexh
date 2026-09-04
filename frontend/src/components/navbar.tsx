@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { NavMenu } from "@/components/nav-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 type NavbarProps = {
@@ -53,7 +54,8 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className={headerClass}
     >
-      <div className="flex min-w-0 items-center justify-start">
+      <div className="flex min-w-0 items-center justify-start gap-2 sm:gap-3">
+        <NavMenu />
         {variant === "page" && backLink ? (
           <Link
             href={backLink.href}

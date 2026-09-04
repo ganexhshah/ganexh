@@ -12,16 +12,19 @@ import { siteConfig } from "@/data/site";
 import { sanityFetch } from "@/sanity/lib/client";
 import { blogsQuery, projectsQuery } from "@/sanity/lib/queries";
 
+import { SeoFaqSection } from "@/components/seo-faq";
+
 export const metadata: Metadata = {
-  title: "Ganesh Shah | Full-Stack Developer — ganeshshah.com",
+  title: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
   description: siteConfig.description,
   alternates: {
     canonical: siteConfig.url,
   },
   openGraph: {
-    title: "Ganesh Shah | Official Portfolio — ganeshshah.com",
+    title: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
     description: siteConfig.description,
     url: siteConfig.url,
+    siteName: "Ganesh Shah — Official Website",
   },
 };
 
@@ -102,6 +105,9 @@ export default async function Home() {
 
       <SvgTextBand text="BLOGS · LEARN · WRITE · EXPLORE ·" />
       <BlogsSection showViewAll initialBlogs={sanityBlogs} />
+
+      <SvgTextBand text="FAQ · KNOWLEDGE · ABOUT · CONNECT ·" />
+      <SeoFaqSection />
 
       <Footer />
     </div>

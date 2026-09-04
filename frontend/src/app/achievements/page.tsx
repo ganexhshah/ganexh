@@ -8,28 +8,52 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { achievements } from "@/data/achievements";
 import { siteConfig } from "@/data/site";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 export const metadata: Metadata = {
-  title: "Achievements",
+  title: "Achievements & Awards — Ganesh Shah | Daydream Game Jam & Milestones",
   description:
-    "Achievements by Ganesh Shah — Daydream Biratnagar Game Jam winner and more milestones from ganeshshah.com.",
+    "Explore hackathon wins and milestones achieved by Ganesh Shah (ganeshshah.com) — including the Daydream Biratnagar 24-hour Game Jam championship and development milestones.",
+  keywords: [
+    "Ganesh Shah achievements",
+    "Ganesh Shah awards",
+    "Daydream Biratnagar Ganesh Shah",
+    "Ganesh Shah game jam",
+    "Ganesh Shah hackathon",
+    "ganeshshah.com",
+    "ganexhshah",
+  ],
   alternates: { canonical: `${siteConfig.url}/achievements` },
   openGraph: {
-    title: "Achievements — Ganesh Shah | ganeshshah.com",
+    title: "Achievements & Awards — Ganesh Shah | Daydream Game Jam & Milestones",
     description:
-      "24-hour game jam wins, milestones, and highlights from Ganesh Shah’s journey.",
+      "24-hour game jam wins, awards, and milestones from Ganesh Shah’s development journey.",
     url: `${siteConfig.url}/achievements`,
+    siteName: "Ganesh Shah — Official Website",
     images: [
       {
         url: "/achievements/daydream-biratnagar.jpg",
-        alt: "Daydream Biratnagar Game Jam",
+        alt: "Daydream Biratnagar Game Jam Winner - Ganesh Shah",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Achievements & Awards — Ganesh Shah",
+    description: "24-hour game jam wins and milestones from Ganesh Shah.",
+    images: ["/achievements/daydream-biratnagar.jpg"],
   },
 };
 
 export default function AchievementsPage() {
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Achievements", url: `${siteConfig.url}/achievements` },
+        ]}
+      />
       <section className="relative overflow-hidden border-b border-white/10 px-4 pb-10 pt-8 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8">
         <div
           aria-hidden="true"

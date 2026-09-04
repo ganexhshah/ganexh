@@ -8,23 +8,49 @@ import { PageShell } from "@/components/page-shell";
 import { siteConfig } from "@/data/site";
 import { contactLinks, socialLinks } from "@/data/social";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Ganesh Shah — Full-Stack Developer & Software Engineer | Nepal",
   description:
-    "About Ganesh Shah — education, skills, GitHub activity, and philosophy. Full-stack developer from Nepal at ganeshshah.com.",
+    "Learn about Ganesh Shah (ganeshshah.com) — full-stack developer & software engineer from Nepal. Explore his background, technical skills, education, and development philosophy.",
+  keywords: [
+    "About Ganesh Shah",
+    "Ganesh Shah",
+    "Ganesh Shah Nepal",
+    "Ganesh Shah developer",
+    "Ganesh Shah software engineer",
+    "Ganesh Shah education",
+    "Ganesh Shah skills",
+    "ganeshshah.com",
+    "ganexhshah",
+  ],
   alternates: { canonical: `${siteConfig.url}/about` },
   openGraph: {
-    title: "About Ganesh Shah — ganeshshah.com",
+    title: "About Ganesh Shah — Full-Stack Developer & Software Engineer | Nepal",
     description:
-      "Education, skills, and the story behind Ganesh Shah’s work.",
+      "Learn about Ganesh Shah (ganeshshah.com) — full-stack developer & software engineer from Nepal. Background, skills, and projects.",
     url: `${siteConfig.url}/about`,
-    images: [{ url: "/tiktok-avatar.jpeg", alt: "Ganesh Shah" }],
+    siteName: "Ganesh Shah — Official Website",
+    images: [{ url: "/tiktok-avatar.jpeg", alt: "Ganesh Shah - Full-Stack Developer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Ganesh Shah — Full-Stack Developer & Software Engineer",
+    description: "Learn about Ganesh Shah — full-stack developer & software engineer from Nepal.",
+    images: ["/tiktok-avatar.jpeg"],
   },
 };
 
 export default function AboutPage() {
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "About", url: `${siteConfig.url}/about` },
+        ]}
+      />
       <section className="relative overflow-hidden border-b border-white/10 px-4 pb-10 pt-8 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8">
         <div
           aria-hidden="true"

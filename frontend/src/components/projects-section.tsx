@@ -235,7 +235,7 @@ export function ProjectsSection({
 
             return (
               <button
-                key={project.id}
+                key={`project-btn-${project.id}-${index}`}
                 type="button"
                 onClick={() => goTo(index)}
                 className="flex h-11 w-full items-center justify-center overflow-hidden text-center transition-opacity duration-500 sm:h-12 lg:h-14 lg:justify-center lg:text-center"
@@ -262,7 +262,7 @@ export function ProjectsSection({
             <AnimatePresence mode="popLayout">
               {allProjects.map((project, index) => (
                 <BackgroundCard
-                  key={project.id}
+                  key={`project-bg-${project.id}-${index}`}
                   project={project}
                   index={index}
                   activeIndex={activeIndex}

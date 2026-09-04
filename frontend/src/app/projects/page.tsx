@@ -8,16 +8,37 @@ import { siteConfig } from "@/data/site";
 import { sanityFetch } from "@/sanity/lib/client";
 import { projectsQuery } from "@/sanity/lib/queries";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Projects by Ganesh Shah — Full-Stack & Software Portfolio",
   description:
-    "Projects by Ganesh Shah on ganeshshah.com — Scrim, NotesChaiyo, RestroPRO, BolKharcha, NayaMenu, P2P Share, and more full-stack work.",
+    "Explore production software projects built by Ganesh Shah (ganeshshah.com) — including Scrim, NotesChaiyo, BolKharcha, RestroPRO, NayaMenu, and P2P Share.",
+  keywords: [
+    "Ganesh Shah projects",
+    "Projects by Ganesh Shah",
+    "Ganesh Shah portfolio",
+    "Scrim Ganesh Shah",
+    "NotesChaiyo Ganesh Shah",
+    "BolKharcha Ganesh Shah",
+    "RestroPRO Ganesh Shah",
+    "Ganesh Shah developer",
+    "ganeshshah.com",
+  ],
   alternates: { canonical: `${siteConfig.url}/projects` },
   openGraph: {
-    title: "Projects — Ganesh Shah | ganeshshah.com",
+    title: "Projects by Ganesh Shah — Full-Stack & Software Portfolio",
     description:
-      "Scrim, NotesChaiyo, RestroPRO, BolKharcha, NayaMenu, P2P Share, and selected full-stack projects.",
+      "Explore production software projects built by Ganesh Shah (ganeshshah.com) — Scrim, NotesChaiyo, BolKharcha, RestroPRO, and more.",
     url: `${siteConfig.url}/projects`,
+    siteName: "Ganesh Shah — Official Website",
+    images: [{ url: "/projects/bolkharcha.jpg", alt: "Ganesh Shah Software Projects" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects by Ganesh Shah — Full-Stack & Software Portfolio",
+    description: "Explore software projects built by Ganesh Shah on ganeshshah.com.",
+    images: ["/projects/bolkharcha.jpg"],
   },
 };
 
@@ -56,6 +77,12 @@ export default async function ProjectsPage() {
 
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Projects", url: `${siteConfig.url}/projects` },
+        ]}
+      />
       <ProjectsSection initialProjects={sanityProjects} />
 
       <section className="border-t border-white/10 px-4 pb-16 pt-12 sm:px-6 lg:px-8">

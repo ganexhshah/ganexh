@@ -8,6 +8,8 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { achievements, getAchievement } from "@/data/achievements";
 import { siteConfig } from "@/data/site";
 
+import { BreadcrumbJsonLd } from "@/components/json-ld";
+
 type AchievementDetailPageProps = {
   params: Promise<{ id: string }>;
 };
@@ -19,24 +21,33 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: AchievementDetailPageProps) {
   const { id } = await params;
   const item = getAchievement(id);
-  if (!item) return { title: "Achievement Not Found" };
+  if (!item) return { title: "Achievement Not Found | Ganesh Shah" };
 
   const url = `${siteConfig.url}/achievements/${item.id}`;
 
   return {
-    title: item.title,
-    description: `${item.badge} — ${item.subtitle}`,
+    title: `${item.title} — Ganesh Shah | Achievements`,
+    description: `${item.badge} — ${item.subtitle} Won by Ganesh Shah (ganeshshah.com).`,
+    keywords: [
+      item.title,
+      `${item.title} Ganesh Shah`,
+      item.event,
+      "Ganesh Shah achievement",
+      "Ganesh Shah award",
+      "ganeshshah.com",
+    ],
     alternates: { canonical: url },
     openGraph: {
-      title: `${item.title} | Ganesh Shah — ganeshshah.com`,
+      title: `${item.title} — Ganesh Shah | Achievements`,
       description: item.subtitle,
       url,
-      images: [{ url: item.image, alt: item.title }],
+      siteName: "Ganesh Shah — Official Website",
+      images: [{ url: item.image, alt: `${item.title} - Ganesh Shah` }],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: item.title,
+      title: `${item.title} | Ganesh Shah`,
       description: item.subtitle,
       images: [item.image],
     },
@@ -51,8 +62,17 @@ export default async function AchievementDetailPage({
 
   if (!item) notFound();
 
+  const url = `${siteConfig.url}/achievements/${item.id}`;
+
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Achievements", url: `${siteConfig.url}/achievements` },
+          { name: item.title, url },
+        ]}
+      />
       <article className="mx-auto max-w-4xl px-4 pb-16 pt-4 sm:px-8 sm:pt-6">
         <ScrollReveal
           scale={0.98}

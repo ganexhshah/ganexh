@@ -6,6 +6,8 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { blogCategories, getBlogPost } from "@/data/blogs";
 import { siteConfig } from "@/data/site";
 
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
+
 type BlogDetailPageProps = {
   params: Promise<{ id: string }>;
 };
@@ -18,19 +20,28 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { id } = await params;
   const post = getBlogPost(id);
-  if (!post) return { title: "Blog Not Found" };
+  if (!post) return { title: "Blog Not Found | Ganesh Shah" };
 
   const url = `${siteConfig.url}/blogs/${post.id}`;
 
   return {
-    title: post.title,
-    description: post.description,
+    title: `${post.title} — Ganesh Shah`,
+    description: `${post.description} Written by Ganesh Shah (ganeshshah.com).`,
+    keywords: [
+      post.title,
+      `${post.title} Ganesh Shah`,
+      "Ganesh Shah blog",
+      "Ganesh Shah article",
+      "ganeshshah.com",
+      post.category,
+    ],
     alternates: { canonical: url },
     openGraph: {
-      title: `${post.title} | Ganesh Shah — ganeshshah.com`,
+      title: `${post.title} — Ganesh Shah`,
       description: post.description,
       url,
-      images: [{ url: post.image, alt: post.title }],
+      siteName: "Ganesh Shah — Official Website",
+      images: [{ url: post.image, alt: `${post.title} by Ganesh Shah` }],
       type: "article",
       publishedTime: post.date,
     },
@@ -49,12 +60,27 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   if (!post) notFound();
 
+  const url = `${siteConfig.url}/blogs/${post.id}`;
   const categoryLabel =
     blogCategories.find((category) => category.id === post.category)?.label ??
     post.category;
 
   return (
     <PageShell>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Blogs", url: `${siteConfig.url}/blogs` },
+          { name: post.title, url },
+        ]}
+      />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.description}
+        url={url}
+        image={post.image}
+        datePublished={post.date}
+      />
       <article className="mx-auto max-w-3xl px-4 pb-16 pt-4 sm:px-8 sm:pt-6">
         <ScrollReveal
           scale={0.98}
