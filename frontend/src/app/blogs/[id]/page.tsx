@@ -5,7 +5,6 @@ import { PageShell } from "@/components/page-shell";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { UtterancesComments } from "@/components/utterances-comments";
 import { BlogAuthorCard } from "@/components/blog-author-card";
-import { BlogShareSheet } from "@/components/blog-share-sheet";
 import { blogCategories, getBlogPost } from "@/data/blogs";
 import { siteConfig } from "@/data/site";
 
@@ -126,7 +125,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </ScrollReveal>
           ))}
         </div>
-        <BlogShareSheet title={post.title} url={url} />
         <BlogAuthorCard />
         <UtterancesComments issueTerm={url} />
       </article>
