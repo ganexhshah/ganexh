@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  compress: true,
   transpilePackages: ["sanity", "next-sanity", "@sanity/vision", "@sanity/image-url", "@sanity/sdk-react", "@sanity/workbench"],
   images: {
     remotePatterns: [
