@@ -9,6 +9,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Magnetic } from "@/components/gsap-ui";
 import { contactLinks, socialLinks } from "@/data/social";
+import { ElectricGazeAscii } from "@/components/electric-gaze-ascii";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,6 +117,17 @@ export function Footer() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-[radial-gradient(ellipse_at_50%_120%,rgba(229,57,53,0.12),transparent_65%)]"
+      />
+      <ElectricGazeAscii
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-56 w-full opacity-70 mix-blend-screen sm:h-64"
+        config={{
+          renderMode: "ascii",
+          cellSize: 8,
+          tint: "#e53935",
+          mask: { enabled: true, feather: 1.25, x: 0.5, y: 0.8 },
+          lights: [{ x: 0.5, y: 0.55, radius: 0.45, color: "#ff726d", intensity: 0.18 }],
+          postEffects: { scanlines: 0.2, vignette: 0.9, bloom: 0.2, grain: 0.03 },
+        }}
       />
 
       <div
