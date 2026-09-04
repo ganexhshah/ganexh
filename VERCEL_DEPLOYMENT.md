@@ -43,3 +43,4 @@ This repository is pre-configured for automated, zero-config deployment to **Ver
      - **Name**: `www`
      - **Value**: `cname.vercel-dns.com`
 4. Vercel will automatically provision a free SSL/TLS certificate.
+
