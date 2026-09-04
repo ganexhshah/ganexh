@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "assets.ganeshshah.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ganeshshah.com",
+      },
+      {
+        protocol: "https",
         hostname: "pub-1ccd4de4be1c4425b05bfbbde47ef4e5.r2.dev",
       },
       {
