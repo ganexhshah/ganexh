@@ -22,6 +22,21 @@ const scriptFont = Great_Vibes({
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+const skillLogos: Record<string, string> = {
+  React: "https://svgl.app/library/react_dark.svg",
+  "Next.js": "https://svgl.app/library/nextjs_icon_dark.svg",
+  TypeScript: "https://svgl.app/library/typescript.svg",
+  "Node.js": "https://svgl.app/library/nodejs.svg",
+  MongoDB: "https://svgl.app/library/mongodb-icon-dark.svg",
+  "Tailwind CSS": "https://svgl.app/library/tailwindcss.svg",
+  Figma: "https://svgl.app/library/figma.svg",
+  GSAP: "https://svgl.app/library/motion_dark.svg",
+  Python: "https://svgl.app/library/python.svg",
+  "Git / GitHub": "https://svgl.app/library/git.svg",
+  "REST APIs": "https://svgl.app/library/rapidapi.svg",
+  "UI / UX": "https://svgl.app/library/figma.svg",
+};
+
 function EducationSkillsColumn() {
   const skillsRef = useRef(null);
   const skillsInView = useInView(skillsRef, { once: true, margin: "-60px" });
@@ -114,9 +129,21 @@ function EducationSkillsColumn() {
                 borderColor: "rgba(229, 57, 53, 0.55)",
                 backgroundColor: "rgba(229, 57, 53, 0.08)",
               }}
-              className="cursor-default rounded-full border border-white/25 bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition-colors sm:text-[11px]"
+              aria-label={skill}
+              title={skill}
+              className="inline-flex size-11 cursor-default items-center justify-center rounded-full border border-white/25 bg-black/40 p-2 transition-colors"
             >
-              {skill}
+              {skillLogos[skill] ? (
+                <Image
+                  src={skillLogos[skill]}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="size-6 object-contain"
+                />
+              ) : (
+                <span className="sr-only">{skill}</span>
+              )}
             </motion.span>
           ))}
         </motion.div>

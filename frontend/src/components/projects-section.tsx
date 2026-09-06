@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -229,30 +229,27 @@ export function ProjectsSection({
       </div>
 
       <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-5 sm:gap-6 lg:grid-cols-[minmax(180px,220px)_minmax(260px,440px)_minmax(180px,280px)] lg:items-start lg:justify-center lg:gap-x-10 xl:gap-x-14">
-        <div className="order-2 flex w-full max-w-xs flex-col items-center justify-center gap-3 lg:order-1 lg:min-h-[360px] lg:max-w-none lg:items-center lg:gap-4">
-          {allProjects.map((project, index) => {
-            const isActive = index === activeIndex;
-
-            return (
-              <button
-                key={`project-btn-${project.id}-${index}`}
-                type="button"
-                onClick={() => goTo(index)}
-                className="flex h-11 w-full items-center justify-center overflow-hidden text-center transition-opacity duration-500 sm:h-12 lg:h-14 lg:justify-center lg:text-center"
-              >
-                <span
-                  className={`block w-full truncate transition-all duration-500 ${
-                    isActive
-                      ? "text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-[1.75rem] lg:leading-tight"
-                      : "text-sm font-normal text-white/35 hover:text-white/55"
-                  }`}
-                >
-                  {project.client}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+      <div className="order-2 flex w-full max-w-xs items-center justify-center gap-3 lg:order-1 lg:min-h-[360px] lg:max-w-none">
+        <button
+          type="button"
+          onClick={goPrev}
+          aria-label="Previous project"
+          className="flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-white/40 hover:bg-white/10"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+        <span className="min-w-0 truncate text-center text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-[1.75rem] lg:leading-tight">
+          {activeProject.client}
+        </span>
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next project"
+          className="flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-white/40 hover:bg-white/10"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+      </div>
 
         <div className="relative order-1 flex w-full items-center justify-center perspective-[1400px] lg:order-2 lg:min-h-[360px]">
       <div
@@ -301,8 +298,8 @@ export function ProjectsSection({
         </div>
 
         <div className="order-3 flex w-full max-w-sm flex-col items-center justify-center text-center lg:min-h-[360px] lg:max-w-[280px] lg:items-center lg:pl-0">
-          <div className="flex min-h-[5.5rem] w-full items-start justify-center gap-4 sm:min-h-[6rem] sm:gap-5">
-            <div className="min-h-[5.5rem] flex-1 sm:min-h-[6rem]">
+          <div className="flex min-h-[5.5rem] w-full items-start justify-center sm:min-h-[6rem]">
+            <div className="min-h-[5.5rem] w-full sm:min-h-[6rem]">
               <AnimatePresence mode="wait">
                 <motion.h3
                   key={activeProject.id}
@@ -317,28 +314,6 @@ export function ProjectsSection({
               </AnimatePresence>
             </div>
 
-            <div className="flex shrink-0 flex-col gap-2 pt-1">
-              <motion.button
-                type="button"
-                onClick={goPrev}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.88 }}
-                aria-label="Previous project"
-                className="flex size-8 items-center justify-center rounded-full bg-white text-black transition-opacity hover:opacity-80 sm:size-9"
-              >
-                <ChevronUp className="size-4" />
-              </motion.button>
-              <motion.button
-                type="button"
-                onClick={goNext}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.88 }}
-                aria-label="Next project"
-                className="flex size-8 items-center justify-center rounded-full bg-white text-black transition-opacity hover:opacity-80 sm:size-9"
-              >
-                <ChevronDown className="size-4" />
-              </motion.button>
-            </div>
           </div>
 
           <div className="mt-3 flex min-h-[6rem] w-full justify-center sm:mt-4">
