@@ -7,10 +7,23 @@ import { Navbar } from "@/components/navbar";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-export function HeroSection() {
+type HeroSectionProps = {
+  showNavbar?: boolean;
+  className?: string;
+};
+
+export function HeroSection({
+  showNavbar = true,
+  className = "",
+}: HeroSectionProps) {
   return (
-    <section id="profile" className="relative flex w-full flex-col overflow-hidden px-4 pb-4 pt-14 sm:px-6 sm:pt-16">
-      <Navbar />
+    <section
+      id="profile"
+      className={`relative flex w-full flex-col overflow-hidden px-4 ${
+        showNavbar ? "pb-4 pt-14 sm:pt-16" : "pb-0 pt-2 sm:pt-4"
+      } ${className}`}
+    >
+      {showNavbar && <Navbar />}
 
       <div className="relative mx-auto w-full max-w-[620px]">
         <motion.div
