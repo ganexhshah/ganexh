@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import {
   blogCategories,
@@ -49,6 +50,7 @@ function BlogCard({
   xStep: number;
   onSelect: () => void;
 }) {
+  const router = useRouter();
   const transform = getArcTransform(offset, xStep);
 
   return (
@@ -62,13 +64,17 @@ function BlogCard({
         mass: 0.9,
       }}
       onClick={() => {
-        if (!isActive) onSelect();
+        if (isActive) {
+          router.push(post.href);
+        } else {
+          onSelect();
+        }
       }}
       className="absolute left-1/2 top-2 w-[min(84vw,315px)] -translate-x-1/2 sm:top-0 sm:w-[335px]"
       style={{
         transformStyle: "preserve-3d",
         pointerEvents: Math.abs(offset) <= 2 ? "auto" : "none",
-        cursor: isActive ? "default" : "pointer",
+        cursor: "pointer",
       }}
     >
       <motion.div
@@ -102,9 +108,15 @@ function BlogCard({
             <span>{post.readTime}</span>
           </div>
 
-          <h3 className="mt-1.5 line-clamp-2 text-base font-semibold tracking-tight text-white sm:text-lg">
-            {post.title}
-          </h3>
+          <Link
+            href={post.href}
+            onClick={(e) => e.stopPropagation()}
+            className="mt-1.5 block group/title"
+          >
+            <h3 className="line-clamp-2 text-base font-semibold tracking-tight text-white transition-colors duration-200 group-hover/title:text-[#e53935] sm:text-lg">
+              {post.title}
+            </h3>
+          </Link>
 
           <p className="mt-1.5 line-clamp-2 flex-1 text-xs leading-relaxed text-white/50 sm:text-sm">
             {post.description}
@@ -374,8 +386,18 @@ export function BlogsSection({
               </motion.button>
             </div>
 
-
-
+            {/* View All Blogs Button */}
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/blogs"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md transition-all duration-300 hover:border-[#e53935]/60 hover:bg-[#e53935]/15 hover:text-white hover:-translate-y-0.5 active:translate-y-0 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)]"
+              >
+                <span>View All Blogs</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-[#e53935]">
+                  →
+                </span>
+              </Link>
+            </div>
           </>
         )}
       </div>
