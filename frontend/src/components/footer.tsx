@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bebas_Neue } from "next/font/google";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 import { Magnetic } from "@/components/gsap-ui";
 import { contactLinks, socialLinks } from "@/data/social";
@@ -146,7 +146,7 @@ export function Footer() {
         ))}
       </div>
 
-      <div data-footer-item className="relative mx-auto mt-6 flex justify-center sm:mt-8">
+      <div data-footer-item className="relative mx-auto mt-6 flex flex-col items-center gap-3 sm:mt-8">
         <Magnetic strength={0.3}>
           <motion.a
             href={socialLinks.mailto}
@@ -169,6 +169,16 @@ export function Footer() {
             <ArrowUpRight className="relative size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </motion.a>
         </Magnetic>
+
+        <a
+          href={socialLinks.mailto}
+          className="group inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-white/60 transition-colors hover:text-white"
+        >
+          <Mail className="size-3.5 text-[#e53935]" />
+          <span className="font-mono tracking-wide group-hover:underline underline-offset-4">
+            {socialLinks.email}
+          </span>
+        </a>
       </div>
 
       <nav
@@ -194,9 +204,15 @@ export function Footer() {
 
       <div
         data-footer-item
-        className="relative mx-auto mt-5 flex w-full max-w-7xl flex-col items-center justify-between gap-2 border-t border-white/10 pt-4 text-[10px] uppercase tracking-[0.16em] text-white/40 sm:mt-6 sm:flex-row sm:text-[11px]"
+        className="relative mx-auto mt-5 flex w-full max-w-7xl flex-col items-center justify-between gap-2 border-t border-white/10 pt-4 text-[10px] tracking-[0.16em] text-white/40 sm:mt-6 sm:flex-row sm:text-[11px]"
       >
-        <p>Ganesh Shah &copy; 2026</p>
+        <p className="uppercase">Ganesh Shah &copy; 2026</p>
+        <a
+          href={socialLinks.mailto}
+          className="font-mono text-white/50 transition-colors hover:text-[#e53935]"
+        >
+          {socialLinks.email}
+        </a>
         <NepalClock />
       </div>
     </footer>
