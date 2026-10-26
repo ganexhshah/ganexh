@@ -37,10 +37,11 @@ function InstagramIcon({ className = "size-3.5" }: { className?: string }) {
 }
 
 const navItems = [
-  { heading: "Home", href: "/", subheading: "Official portfolio" },
-  { heading: "Projects", href: "/projects", subheading: "Selected work & apps" },
-  { heading: "Blogs", href: "/blogs", subheading: "Articles & learnings" },
-  { heading: "Achievements", href: "/achievements", subheading: "Awards & milestones" },
+  { heading: "Home", href: "/" },
+  { heading: "Projects", href: "/projects" },
+  { heading: "Recent Work", href: "/#recent-work" },
+  { heading: "Blogs", href: "/blogs" },
+  { heading: "Achievements", href: "/achievements" },
 ];
 
 const MENU_SLIDE_ANIMATION = {
@@ -94,14 +95,12 @@ function Curve() {
 function NavLinkItem({
   heading,
   href,
-  subheading,
   index,
   isActiveRoute,
   onSelect,
 }: {
   heading: string;
   href: string;
-  subheading?: string;
   index: number;
   isActiveRoute: boolean;
   onSelect: () => void;
@@ -134,35 +133,28 @@ function NavLinkItem({
         onClick={onSelect}
         className="flex w-full items-center justify-between"
       >
-        <div className="relative flex items-baseline gap-3 sm:gap-4">
+        <div className="relative flex items-center gap-3 sm:gap-4">
           <span className="font-mono text-sm text-[#e53935] sm:text-base">
             0{index}.
           </span>
-          <div>
-            <motion.span
-              variants={{
-                initial: { x: 0 },
-                whileHover: { x: 10 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 240,
-                damping: 18,
-              }}
-              className={`block text-2xl font-light tracking-tight transition-colors duration-300 sm:text-3xl md:text-4xl ${
-                isActiveRoute
-                  ? "text-[#e53935] font-normal"
-                  : "text-white group-hover:text-[#e53935] not-dark:text-neutral-900"
-              }`}
-            >
-              {heading}
-            </motion.span>
-            {subheading && (
-              <p className="mt-0.5 text-xs text-white/40 not-dark:text-neutral-500">
-                {subheading}
-              </p>
-            )}
-          </div>
+          <motion.span
+            variants={{
+              initial: { x: 0 },
+              whileHover: { x: 10 },
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 240,
+              damping: 18,
+            }}
+            className={`block text-2xl font-light tracking-tight transition-colors duration-300 sm:text-3xl md:text-4xl ${
+              isActiveRoute
+                ? "text-[#e53935] font-normal"
+                : "text-white group-hover:text-[#e53935] not-dark:text-neutral-900"
+            }`}
+          >
+            {heading}
+          </motion.span>
         </div>
 
         {isActiveRoute && (
@@ -293,7 +285,6 @@ export function NavMenu() {
                       key={item.href}
                       heading={item.heading}
                       href={item.href}
-                      subheading={item.subheading}
                       index={index + 1}
                       isActiveRoute={isActive}
                       onSelect={() => setIsOpen(false)}

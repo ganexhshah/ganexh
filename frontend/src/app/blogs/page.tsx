@@ -65,6 +65,7 @@ export default async function BlogsPage() {
           typeof b.content === "string"
             ? b.content.split("\n\n")
             : b.content || [],
+        tags: Array.isArray(b.tags) ? b.tags : [],
       }));
     }
   } catch (err) {

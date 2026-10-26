@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { ProjectsGrid } from "@/components/projects-grid";
 import { ProjectsSection } from "@/components/projects-section";
+import { RecentWorkSection } from "@/components/recent-work-section";
 import { getProject, type Project } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -84,6 +85,7 @@ export default async function ProjectsPage() {
         ]}
       />
       <ProjectsSection initialProjects={sanityProjects} />
+      <RecentWorkSection />
 
       <section className="border-t border-white/10 px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">

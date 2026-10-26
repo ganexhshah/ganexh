@@ -5,6 +5,7 @@ import { BlogsSection } from "@/components/blogs-section";
 import { Footer } from "@/components/footer";
 import { HeroSection } from "@/components/hero-section";
 import { ProjectsSection } from "@/components/projects-section";
+import { RecentWorkSection } from "@/components/recent-work-section";
 import { SvgTextBand } from "@/components/svg-text-band";
 import { getBlogPost, type BlogPost } from "@/data/blogs";
 import { getProject, type Project } from "@/data/projects";
@@ -84,6 +85,7 @@ export default async function Home() {
             typeof b.content === "string"
               ? b.content.split("\n\n")
               : b.content || fallbackBlog?.content || [],
+          tags: Array.isArray(b.tags) && b.tags.length > 0 ? b.tags : fallbackBlog?.tags || [],
         };
       });
     }
@@ -97,6 +99,9 @@ export default async function Home() {
 
       <SvgTextBand text="PROJECTS · BUILD · SHIP · ITERATE ·" />
       <ProjectsSection showViewAll initialProjects={sanityProjects} />
+
+      <SvgTextBand text="RECENT WORK · CLIENTS · CRAFT · DELIVER ·" />
+      <RecentWorkSection />
 
       <SvgTextBand text="ABOUT · CRAFT · PROCESS · DETAIL ·" />
       <AboutSection />

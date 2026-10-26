@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
 import { Great_Vibes } from "next/font/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -46,17 +45,7 @@ function EducationSkillsColumn() {
       y={20}
       className="group flex h-full flex-col p-6 sm:p-7"
     >
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: EASE }}
-        className="text-sm font-bold uppercase tracking-[0.18em] text-white text-center"
-      >
-        Education &amp; Skills
-      </motion.h2>
-
-      <div className="mt-8 flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#e53935] text-center">
           Education
         </p>
@@ -112,9 +101,9 @@ function EducationSkillsColumn() {
           animate={skillsInView ? "visible" : "hidden"}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.04, delayChildren: 0.1 } },
           }}
-          className="mt-6 flex flex-wrap justify-center gap-3.5 w-full"
+          className="mt-6 flex w-full flex-nowrap items-center justify-between sm:justify-center gap-1.5 sm:gap-2 lg:gap-2.5 overflow-x-auto no-scrollbar py-3 px-1"
         >
           {skills.map((skill) => (
             <motion.span
@@ -125,25 +114,30 @@ function EducationSkillsColumn() {
               }}
               transition={{ duration: 0.4, ease: EASE }}
               whileHover={{
-                scale: 1.05,
-                borderColor: "rgba(229, 57, 53, 0.55)",
-                backgroundColor: "rgba(229, 57, 53, 0.08)",
+                scale: 1.15,
+                y: -3,
+                borderColor: "rgba(229, 57, 53, 0.7)",
+                backgroundColor: "rgba(229, 57, 53, 0.14)",
               }}
               aria-label={skill}
               title={skill}
-              className="inline-flex size-11 cursor-default items-center justify-center rounded-full border border-white/25 bg-black/40 p-2 transition-colors"
+              className="group/skill relative inline-flex size-9 sm:size-10 shrink-0 cursor-default items-center justify-center rounded-full border border-white/25 bg-black/40 p-1.5 sm:p-2 transition-all shadow-sm"
             >
               {skillLogos[skill] ? (
                 <Image
                   src={skillLogos[skill]}
-                  alt=""
-                  width={18}
-                  height={18}
-                  className="size-6 object-contain"
+                  alt={skill}
+                  width={20}
+                  height={20}
+                  className="size-5 sm:size-5.5 object-contain transition-transform group-hover/skill:scale-110"
                 />
               ) : (
                 <span className="sr-only">{skill}</span>
               )}
+              {/* Floating Tooltip */}
+              <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900/90 border border-white/15 px-2 py-0.5 text-[10px] font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-opacity group-hover/skill:opacity-100 z-20">
+                {skill}
+              </span>
             </motion.span>
           ))}
         </motion.div>
@@ -269,34 +263,6 @@ function QuoteCtaColumn() {
             <span>More</span>
           </div>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: EASE, delay: 0.45 }}
-          className="relative z-[1] mt-5 flex items-center justify-center gap-4 border-t border-white/10 pt-5"
-        >
-          <a
-            href={quoteContent.email}
-            className="group inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/45 transition-colors hover:text-[#e53935] sm:text-[11px]"
-          >
-            <span className="relative">
-              {quoteContent.cta}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#e53935] transition-all duration-300 group-hover:w-full" />
-            </span>
-          </a>
-
-          <motion.div
-            animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Sparkles
-              className="size-4 shrink-0 text-[#e53935]"
-              aria-hidden="true"
-            />
-          </motion.div>
-        </motion.div>
       </div>
     </ScrollReveal>
   );
@@ -331,26 +297,6 @@ export function AboutSection() {
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(229,57,53,0.06),transparent_50%),radial-gradient(ellipse_at_80%_50%,rgba(255,255,255,0.03),transparent_45%)]" />
 
-      <div className="relative mb-3 flex flex-col items-center text-center sm:mb-4">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: EASE }}
-          className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#e53935]"
-        >
-          About
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.08 }}
-          className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl"
-        >
-          Behind the Work
-        </motion.h2>
-      </div>
 
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 lg:grid-cols-2">
         <EducationSkillsColumn />
