@@ -16,6 +16,7 @@ import { blogsQuery, projectsQuery } from "@/sanity/lib/queries";
 export const metadata: Metadata = {
   title: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
   description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
   alternates: {
     canonical: siteConfig.url,
   },
@@ -24,6 +25,22 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: "Ganesh Shah — Official Website",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Ganesh Shah — Full-Stack Developer & Software Engineer",
+      },
+    ],
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesh Shah — Full-Stack Developer & Software Engineer",
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: siteConfig.twitterHandle,
   },
 };
 

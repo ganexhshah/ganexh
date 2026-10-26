@@ -22,11 +22,15 @@ export function JsonLd() {
       "Ganesh Shah Developer",
       "Ganesh Shah Software Engineer",
       "Ganesh Shah Biratnagar",
+      "Ganesh Shah Full Stack Developer",
+      "Ganesh Shah Portfolio",
+      "ganeshshah.com",
     ],
     url: siteConfig.url,
     email: socialLinks.email,
     jobTitle: "Full-Stack Developer & Software Engineer",
-    description: siteConfig.description,
+    description:
+      "Ganesh Shah is a full-stack developer and software engineer based in Biratnagar, Nepal. He builds high-performance web systems and applications using Node.js, NestJS, Next.js, and Laravel, and is the creator of Scrim, NotesChaiyo, BolKharcha, and RestroPRO.",
     image: `${siteConfig.url}/profile-ClwFbffV.jpg`,
     gender: "Male",
     nationality: {
@@ -46,23 +50,85 @@ export function JsonLd() {
       socialLinks.tiktok,
       "https://x.com/ganesh_sha1",
       "https://twitter.com/ganesh_sha1",
+      "https://github.com/ganexhshah",
+      "https://www.linkedin.com/in/ganesh-shah2064",
     ],
     knowsAbout: [
+      "Ganesh Shah",
       "Full-Stack Web Development",
       "Software Engineering",
+      "System Architecture",
+      "Next.js",
+      "React",
       "Node.js",
       "NestJS",
       "Laravel",
-      "Next.js",
-      "React",
-      "React Native",
       "TypeScript",
       "JavaScript",
       "PostgreSQL",
+      "MongoDB",
       "Tailwind CSS",
       "REST APIs",
-      "System Architecture",
+      "Docker",
       "Cloudflare R2",
+    ],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Full-Stack Developer & Software Engineer",
+      occupationLocation: {
+        "@type": "City",
+        name: "Biratnagar",
+      },
+      skills:
+        "Full-Stack Development, Node.js, NestJS, Next.js, Laravel, TypeScript, React, PostgreSQL, REST APIs",
+    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "Sushma Godawari College",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "NP",
+        },
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "Standard Secondary Boarding School",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "NP",
+        },
+      },
+    ],
+    award: [
+      "Daydream Biratnagar 24-hour Game Jam Winner",
+    ],
+    creator: [
+      {
+        "@type": "SoftwareApplication",
+        name: "Scrim",
+        applicationCategory: "GameApplication",
+        operatingSystem: "Android, Web",
+        url: "https://goscrim.live",
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "NotesChaiyo",
+        applicationCategory: "EducationalApplication",
+        url: `${siteConfig.url}/projects/noteschaiyo`,
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "BolKharcha",
+        applicationCategory: "FinanceApplication",
+        url: `${siteConfig.url}/projects/bolkharcha`,
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "RestroPRO",
+        applicationCategory: "BusinessApplication",
+        url: `${siteConfig.url}/projects/restropro`,
+      },
     ],
     mainEntityOfPage: siteConfig.url,
   };
@@ -87,13 +153,21 @@ export function JsonLd() {
       "@id": personId,
     },
     inLanguage: "en",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/blogs?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   const profilePage = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "@id": `${siteConfig.url}/#profilepage`,
-    name: "Ganesh Shah — Full-Stack Developer & Software Engineer",
+    name: "Ganesh Shah — Full-Stack Developer & Software Engineer | Official Website",
     url: siteConfig.url,
     mainEntity: {
       "@id": personId,
@@ -101,6 +175,11 @@ export function JsonLd() {
     isPartOf: {
       "@id": websiteId,
     },
+    description:
+      "Official portfolio and profile of Ganesh Shah (ganeshshah.com), full-stack developer and software engineer from Nepal.",
+    primaryImageOfPage: `${siteConfig.url}/profile-ClwFbffV.jpg`,
+    dateCreated: "2024-01-01T00:00:00Z",
+    dateModified: new Date().toISOString(),
   };
 
   const faqPage = {
@@ -112,7 +191,7 @@ export function JsonLd() {
         name: "Who is Ganesh Shah?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ganesh Shah is a full-stack developer and software engineer from Nepal specializing in Node.js, NestJS, Laravel, Next.js, and high-performance web systems.",
+          text: "Ganesh Shah is a full-stack developer and software engineer based in Biratnagar, Nepal. He specializes in building robust, performant web applications and backend systems using Node.js, NestJS, Next.js, and Laravel.",
         },
       },
       {
@@ -120,15 +199,15 @@ export function JsonLd() {
         name: "What is the official website of Ganesh Shah?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The official website of Ganesh Shah is https://ganeshshah.com, showcasing his software projects, technical blog posts, achievements, and contact details.",
+          text: "The official website of Ganesh Shah is https://ganeshshah.com, featuring his software projects, engineering articles, achievements, and direct contact options.",
         },
       },
       {
         "@type": "Question",
-        name: "What projects has Ganesh Shah built?",
+        name: "What software projects has Ganesh Shah built?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ganesh Shah has built applications including Scrim (esports tournament platform), NotesChaiyo, BolKharcha (AI expense tracker), RestroPRO, NayaMenu, and P2P Share.",
+          text: "Ganesh Shah has built production applications including Scrim (skill-based Free Fire tournament platform at https://goscrim.live), NotesChaiyo (academic notes platform), BolKharcha (AI expense tracker), RestroPRO (restaurant POS system), NayaMenu, and P2P Share.",
         },
       },
       {
@@ -136,7 +215,7 @@ export function JsonLd() {
         name: "How can I contact Ganesh Shah?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "You can reach Ganesh Shah by email at hello.ganeshshah@gmail.com or via GitHub (@ganexhshah), LinkedIn, TikTok (@_ganexx), and Instagram (@ganesh_sha1).",
+          text: "You can contact Ganesh Shah directly at hello.ganeshshah@gmail.com, or connect on GitHub (@ganexhshah), LinkedIn (in/ganesh-shah2064), TikTok (@_ganexx), and Instagram (@ganesh_sha1).",
         },
       },
       {
@@ -144,7 +223,23 @@ export function JsonLd() {
         name: "Where is Ganesh Shah located?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ganesh Shah is based in Biratnagar, Nepal.",
+          text: "Ganesh Shah is located in Biratnagar, Koshi Province, Nepal.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What awards and achievements does Ganesh Shah have?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ganesh Shah won the Daydream Biratnagar 24-hour Game Jam championship and has built multiple high-impact software products.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What technical skills does Ganesh Shah have?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ganesh Shah's technical skills include TypeScript, JavaScript, Next.js, React, Node.js, NestJS, Laravel, PHP, PostgreSQL, MongoDB, Tailwind CSS, Docker, Cloudflare R2, and RESTful API architecture.",
         },
       },
     ],

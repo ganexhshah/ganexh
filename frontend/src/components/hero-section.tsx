@@ -61,7 +61,7 @@ export function HeroSection({
             <div className="group relative isolate h-28 w-28 transform-gpu transition-transform duration-500 ease-out sm:h-36 sm:w-36 md:h-36 md:w-36">
               <Image
                 src="/Untitled design.png"
-                alt="Ganesh Shah avatar"
+                alt="Ganesh Shah — Full-Stack Developer & Software Engineer (ganeshshah.com)"
                 fill
                 priority
                 className="pointer-events-none select-none object-contain drop-shadow-2xl transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
