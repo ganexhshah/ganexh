@@ -106,7 +106,7 @@ export function RecentWorkSection() {
                   </p>
 
                   {/* Description */}
-                  <p className="mt-1.5 text-xs leading-relaxed text-neutral-600 sm:text-[13.5px] dark:text-neutral-400">
+                  <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-neutral-600 sm:text-[13.5px] dark:text-neutral-400">
                     {item.description}
                   </p>
 
