@@ -24,6 +24,66 @@ export type RecentWorkItem = {
 
 export const recentWorks: RecentWorkItem[] = [
   {
+    id: "kirana-pasal",
+    title: "Kirana Pasal Management System",
+    client: "Kirana Pasal POS",
+    category: "Retail POS & Inventory System",
+    tagline: "POS, Inventory, Billing & Credit Ledger for Grocery Stores in Nepal",
+    description:
+      "Kirana Pasal Management System built using Flutter, Laravel, PostgreSQL, and Docker. Manage products, inventory, purchases, suppliers, customers, POS billing, sales, expenses, credit payments, and profit reports with secure APIs, accurate calculations, automatic stock updates, and a simple user-friendly interface for grocery stores in Nepal.",
+    logo: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+    thumbnail: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+    liveUrl: "/projects/kirana-pasal",
+    year: "2026",
+    role: "Full-Stack & Mobile Architect",
+    status: "Production Ready",
+    featured: true,
+    techStack: [
+      "Flutter",
+      "Laravel",
+      "PostgreSQL",
+      "Docker",
+      "RESTful API",
+      "POS Billing",
+    ],
+    highlights: [
+      "Fast POS counter billing with barcode scanning and instant thermal receipts",
+      "Automatic real-time inventory updates across purchases, sales, and returns",
+      "Customer credit (Khata / Udharo) ledger with partial payment tracking",
+      "Comprehensive daily/monthly profit reports, supplier ledgers, and expense monitoring",
+      "Dockerized microservices architecture with PostgreSQL transactional consistency",
+    ],
+    folderTone: "light",
+    folderArt: "ember",
+    folderSeed: 35,
+    folderFiles: [
+      {
+        name: "Kirana POS App",
+        meta: "Flutter · Mobile & Tablet",
+        image: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+        href: "/projects/kirana-pasal",
+      },
+      {
+        name: "kiranapos.svg",
+        meta: "Vector Brand Asset",
+        image: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+        href: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+      },
+      {
+        name: "Backend Services",
+        meta: "Laravel 11 & PostgreSQL",
+        art: "ember",
+        href: "/projects/kirana-pasal",
+      },
+      {
+        name: "Deployment Engine",
+        meta: "Docker Containerized",
+        art: "glacier",
+        href: "/projects/kirana-pasal",
+      },
+    ],
+  },
+  {
     id: "jimi-achar",
     title: "Jimi Achar",
     client: "Jimi Achar",

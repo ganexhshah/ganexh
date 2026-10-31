@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   transpilePackages: ["sanity", "next-sanity", "@sanity/vision", "@sanity/image-url", "@sanity/sdk-react", "@sanity/workbench"],
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",

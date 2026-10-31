@@ -1,3 +1,11 @@
+export type GalleryItem = {
+  src: string;
+  alt: string;
+  title?: string;
+  category?: string;
+  description?: string;
+};
+
 export type Project = {
   id: string;
   client: string;
@@ -12,13 +20,214 @@ export type Project = {
   techStack: string[];
   content: string[];
   features: string[];
-  challenges: { title: string; challenge: string; solution: string }[];
+  challenges?: { title: string; challenge: string; solution: string }[];
   liveDemo?: string;
   github?: string;
-  gallery?: { src: string; alt: string }[];
+  gallery?: GalleryItem[];
 };
 
 export const projects: Project[] = [
+  {
+    id: "kirana-pasal",
+    client: "Kirana Pasal POS",
+    title: "Grocery & Retail Store Management System",
+    description:
+      "Kirana Pasal Management System built using Flutter, Laravel, PostgreSQL, and Docker. Manage products, inventory, purchases, suppliers, customers, POS billing, sales, expenses, credit payments, and profit reports with secure APIs, accurate calculations, automatic stock updates, and a simple user-friendly interface for grocery stores in Nepal.",
+    image: "https://assets.ganeshshah.com/Untitled%20design%20(1)/kiranapos.svg",
+    href: "/projects/kirana-pasal",
+    year: "2026",
+    role: "Full-Stack & Mobile Architect",
+    status: "Completed · Production Ready",
+    featured: true,
+    techStack: [
+      "Flutter",
+      "Laravel",
+      "PostgreSQL",
+      "Docker",
+      "REST API",
+      "POS Billing",
+    ],
+    content: [
+      "Kirana Pasal Management System is a specialized point-of-sale and retail inventory solution tailored specifically to the workflow and bookkeeping culture of grocery stores (kirana pasals) across Nepal.",
+      "The counter experience is powered by an ultra-fast Flutter client supporting quick item lookups, barcode scanning, custom pricing, and thermal receipt generation — keeping checkout lines moving quickly even during peak rush hours.",
+      "Under the hood, a high-throughput Laravel 11 backend connected to PostgreSQL handles stock ledger balance calculations, purchase order reconciliations, supplier billing, and customer credit (Khata / Udharo) balances with atomic transactional safety.",
+      "The entire service architecture is containerized with Docker and Docker Compose, ensuring zero-configuration counter server deployments, painless automated database backups, and seamless scalability for multi-branch grocery chains.",
+    ],
+    features: [
+      "Fast POS Counter Billing",
+      "Barcode & Quick Item Lookup",
+      "Automatic Stock Deduction & Restock",
+      "Supplier & Purchase Invoicing",
+      "Customer Credit (Udharo / Khata) Ledger",
+      "Partial Payment Tracking",
+      "Expense Categorization & Logging",
+      "Daily & Monthly Profit Reports",
+      "Low-Stock Alerts & Reorder Reminders",
+      "Dockerized Microservices & Secure APIs",
+    ],
+    gallery: [
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/dashbaord.svg",
+        alt: "Kirana POS Real-Time Dashboard",
+        title: "Store Analytics & POS Dashboard",
+        category: "Analytics & POS",
+        description:
+          "Real-time retail overview featuring daily revenue counters, profit margins, quick actions, low-stock warnings, and transaction velocity charts.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/pos.svg",
+        alt: "Fast Point-of-Sale Counter Terminal",
+        title: "Fast POS Counter Terminal",
+        category: "POS & Billing",
+        description:
+          "Speed-optimized touch billing terminal designed for rapid item lookup, quantity modifiers, category shortcuts, and live order subtotals.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/checkout.svg",
+        alt: "Quick Checkout & Order Summary",
+        title: "Quick Checkout & Order Summary",
+        category: "POS & Billing",
+        description:
+          "Streamlined checkout panel displaying itemized subtotals, applied discount percentages, VAT breakdown, and change calculations.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/bill.svg",
+        alt: "Thermal Receipt & Invoice Generation",
+        title: "Customer Bill & Receipt Preview",
+        category: "POS & Billing",
+        description:
+          "Standardized thermal invoice layout formatted for 58mm and 80mm ESC/POS printers with QR payment codes and PAN store details.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/paymentmethod.svg",
+        alt: "Multi-Option Payment Selection",
+        title: "Multi-Channel Payment Selection",
+        category: "POS & Billing",
+        description:
+          "Support for Cash tender, digital wallets (eSewa, Khalti, IME Pay), Fonepay QR, card POS machines, and Customer Khata credit.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/partiels.svg",
+        alt: "Khata Partial Credit Settlements",
+        title: "Partial Credit Payment Collection",
+        category: "Khata & Credit",
+        description:
+          "Flexible credit settlement interface enabling partial installments, remaining balance computation, and instant receipt generation.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/products.svg",
+        alt: "Comprehensive Product Inventory Catalog",
+        title: "Grocery Products & Inventory Catalog",
+        category: "Inventory & Stock",
+        description:
+          "Centralized grocery inventory directory managing brand names, units (kg, liter, packet), cost price, selling price, and stock levels.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/scan.svg",
+        alt: "Hardware & Camera Barcode Scanner",
+        title: "Barcode & Quick Item Scanner",
+        category: "Inventory & Stock",
+        description:
+          "Instant barcode decoding using built-in camera or USB/Bluetooth laser scanners for immediate zero-latency cart additions.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/sellcet.svg",
+        alt: "Product Unit & Batch Selection",
+        title: "Product Unit & Batch Selection",
+        category: "Inventory & Stock",
+        description:
+          "Configurable metric units, loose commodity weighing conversions, batch tracking, and wholesale vs retail unit switching.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/lowstock.svg",
+        alt: "Automated Low-Stock Threshold Alerts",
+        title: "Low-Stock Alerts & Restock Queue",
+        category: "Inventory & Stock",
+        description:
+          "Proactive inventory monitoring flagging critical stock shortages and auto-generating supplier reorder suggestions.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/customer.svg",
+        alt: "Customer Directory & Credit Ledgers",
+        title: "Customer Directory & Khata Ledgers",
+        category: "Khata & Credit",
+        description:
+          "Customer relationship ledger showing historical purchasing trends, credit limits, outstanding debts, and settlement timelines.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/addcustomer.svg",
+        alt: "New Customer Registration & Credit Limit",
+        title: "Customer Registration & Credit Limit",
+        category: "Khata & Credit",
+        description:
+          "Quick customer profile onboarding with credit threshold caps, phone numbers, neighborhood tags, and emergency contacts.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/sale.svg",
+        alt: "Sales History & Transaction Ledgers",
+        title: "Sales History & Transaction Register",
+        category: "Analytics & POS",
+        description:
+          "Searchable chronological sales ledger with filters for date ranges, tender types, cashiers, and return invoice reconciliations.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/suppilerdetils.svg",
+        alt: "Wholesale Supplier Directory & Ledgers",
+        title: "Supplier Directory & Ledger Details",
+        category: "Suppliers & Orders",
+        description:
+          "Comprehensive supplier directory tracking purchase order histories, payable dues, contact persons, and delivery schedules.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/suppilerpayment.svg",
+        alt: "Supplier Invoicing & Settlement Logging",
+        title: "Supplier Invoicing & Payments",
+        category: "Suppliers & Orders",
+        description:
+          "Wholesale purchase invoice logging, partial payable settlements, and outgoing vendor transaction records.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/printer.svg",
+        alt: "Thermal Printer Configuration",
+        title: "Thermal Printer Hardware Settings",
+        category: "System & Hardware",
+        description:
+          "Hardware connection manager for Bluetooth, USB, and network thermal receipt printers with test printing and auto-cutter tools.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/login.svg",
+        alt: "Secure Staff Authentication",
+        title: "Cashier & Manager PIN Authentication",
+        category: "System & Hardware",
+        description:
+          "Fast role-based security requiring individual clerk PINs to audit cashier shifts and restrict discounts and financial reports.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/notfication.svg",
+        alt: "Real-time Store Notifications",
+        title: "Notifications & Payment Reminders",
+        category: "System & Hardware",
+        description:
+          "System notification center delivering alerts for supplier payment deadlines, overdue customer credit, and low stock.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/demo.svg",
+        alt: "Interactive Training & Demo Walkthrough",
+        title: "Clerk Training & Demo Walkthrough",
+        category: "System & Hardware",
+        description:
+          "Built-in simulation mode enabling new store staff to practice barcode scanning, billing, and khata entries safely.",
+      },
+      {
+        src: "https://assets.ganeshshah.com/Untitled%20design%20(1)/more.svg",
+        alt: "System Configuration & Master Settings",
+        title: "System Settings & Configuration",
+        category: "System & Hardware",
+        description:
+          "Global store preferences including PAN/VAT details, currency symbols, automated local backup routines, and cloud sync.",
+      },
+    ],
+  },
   {
     id: "scrim",
     client: "Scrim",

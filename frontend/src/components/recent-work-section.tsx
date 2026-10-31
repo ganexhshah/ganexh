@@ -11,6 +11,7 @@ const SMOOTH_EASE = [0.16, 1, 0.3, 1] as const;
 
 function getDisplayUrl(url?: string) {
   if (!url) return "";
+  if (url.startsWith("/")) return "ganeshshah.com" + url;
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
@@ -53,6 +54,7 @@ export function RecentWorkSection() {
         <div className="flex w-full flex-col gap-5 sm:gap-6">
           {recentWorks.map((item, idx) => {
             const displayUrl = getDisplayUrl(item.liveUrl);
+            const isExternal = item.liveUrl?.startsWith("http");
 
             return (
               <motion.article
@@ -70,14 +72,15 @@ export function RecentWorkSection() {
                 {/* Left: Clean Thumbnail Image without extra divs or top bar */}
                 <Link
                   href={item.liveUrl || "#"}
-                  target={item.liveUrl ? "_blank" : undefined}
-                  rel={item.liveUrl ? "noopener noreferrer" : undefined}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
                   className="relative h-[155px] w-full shrink-0 overflow-hidden rounded-xl border border-white/10 shadow-lg transition-all duration-300 hover:border-white/25 sm:h-[175px] md:w-[280px] lg:w-[320px]"
                 >
                   <Image
                     src={item.thumbnail}
                     alt={`${item.title} Preview`}
                     fill
+                    unoptimized={item.thumbnail.endsWith(".svg") || item.thumbnail.includes(".svg")}
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 320px"
                   />
@@ -88,8 +91,8 @@ export function RecentWorkSection() {
                   {/* Title */}
                   <Link
                     href={item.liveUrl || "#"}
-                    target={item.liveUrl ? "_blank" : undefined}
-                    rel={item.liveUrl ? "noopener noreferrer" : undefined}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
                     className="group/title inline-block"
                   >
                     <h3 className="font-heading text-lg font-bold tracking-tight text-neutral-900 transition-colors duration-200 group-hover/title:text-[#e53935] sm:text-xl md:text-2xl dark:text-white">
@@ -109,10 +112,10 @@ export function RecentWorkSection() {
 
                   {/* Live Website Link with Favicon Badge */}
                   {item.liveUrl && (
-                    <a
+                    <Link
                       href={item.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
                       className="group/link mt-2.5 inline-flex items-center gap-2 text-xs font-medium text-neutral-500 transition-colors duration-200 hover:text-neutral-900 sm:text-sm dark:text-neutral-400 dark:hover:text-white"
                     >
                       {/* Logo / Favicon Badge */}
@@ -128,7 +131,7 @@ export function RecentWorkSection() {
                       <span className="tracking-wide group-hover/link:underline underline-offset-4">
                         {displayUrl}
                       </span>
-                    </a>
+                    </Link>
                   )}
                 </div>
               </motion.article>
