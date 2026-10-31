@@ -126,23 +126,23 @@ export function ProjectGallery({ gallery, projectTitle }: ProjectGalleryProps) {
             <div
               key={shot.src}
               onClick={() => handleOpen(rawIndex)}
-              className="group cursor-pointer flex flex-col rounded-xl border border-neutral-800 bg-neutral-950 p-2 transition-colors hover:border-neutral-600"
+              className="group cursor-pointer flex flex-col transition-opacity hover:opacity-90"
             >
-              {/* Screen Preview Container */}
-              <div className="relative aspect-[9/19] w-full overflow-hidden rounded-lg bg-neutral-900">
+              {/* Screen Preview Container without surrounding box or background */}
+              <div className="relative aspect-[9/19] w-full overflow-hidden">
                 <Image
                   src={shot.src}
                   alt={shot.title || shot.alt || "Screen Preview"}
                   fill
                   unoptimized={shot.src.endsWith(".svg") || shot.src.includes(".svg")}
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-cover object-top"
+                  className="object-contain"
                   loading="lazy"
                 />
               </div>
 
               {/* Clean Caption */}
-              <div className="mt-2.5 px-0.5">
+              <div className="mt-2 text-center">
                 <p className="truncate text-xs font-medium text-white group-hover:text-neutral-200">
                   {shot.title || shot.alt}
                 </p>
@@ -224,19 +224,19 @@ export function ProjectGallery({ gallery, projectTitle }: ProjectGalleryProps) {
             <ChevronRight className="size-5" />
           </button>
 
-          {/* Screen Image Display */}
+          {/* Screen Image Display without background box */}
           <div
-            className="relative flex max-h-[82vh] w-full max-w-sm flex-col items-center pt-10"
+            className="relative flex max-h-[85vh] w-full max-w-sm flex-col items-center pt-10"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[9/19] max-h-[75vh] w-full overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950">
+            <div className="relative aspect-[9/19] max-h-[78vh] w-full overflow-hidden">
               <Image
                 key={gallery[activeModalIndex].src}
                 src={gallery[activeModalIndex].src}
                 alt={gallery[activeModalIndex].alt}
                 fill
                 unoptimized={gallery[activeModalIndex].src.includes(".svg")}
-                className="object-cover object-top"
+                className="object-contain"
                 sizes="420px"
                 loading="lazy"
               />
